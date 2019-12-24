@@ -1,6 +1,6 @@
 root = true
 
-[*]
+[*, {composer}.*]
 charset = utf-8
 end_of_line = lf
 insert_final_newline = true
@@ -16,3 +16,6 @@ indent_size = 2
 
 [{Makefile,**.mk}]
 indent_style = tab
+
+[{*.json}]
+indent_size = 2
