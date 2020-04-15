@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "da4496c24840365bb7b8453c240ee131",
+    "content-hash": "b5331c1baf8401859087225f80f45dea",
     "packages": [
         {
             "name": "brick/math",
@@ -745,36 +745,94 @@
             "time": "2020-02-22T01:51:47+00:00"
         },
         {
-            "name": "graham-campbell/github",
-            "version": "v8.7.0",
+            "name": "graham-campbell/bounded-cache",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/GrahamCampbell/Laravel-GitHub.git",
-                "reference": "0fa736929945b6f6166e99570eedb4f7c3fa62cf"
+                "url": "https://github.com/GrahamCampbell/Bounded-Cache.git",
+                "reference": "577b66d5270fa5ac80f489c003385e0f77b71485"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrahamCampbell/Laravel-GitHub/zipball/0fa736929945b6f6166e99570eedb4f7c3fa62cf",
-                "reference": "0fa736929945b6f6166e99570eedb4f7c3fa62cf",
+                "url": "https://api.github.com/repos/GrahamCampbell/Bounded-Cache/zipball/577b66d5270fa5ac80f489c003385e0f77b71485",
+                "reference": "577b66d5270fa5ac80f489c003385e0f77b71485",
                 "shasum": ""
             },
             "require": {
-                "graham-campbell/manager": "^4.4",
-                "illuminate/contracts": "^5.5|^6.0|^7.0",
-                "illuminate/support": "^5.5|^6.0|^7.0",
-                "knplabs/github-api": "2.13.*",
-                "php": "^7.1.3",
-                "php-http/cache-plugin": "^1.6",
-                "php-http/client-common": "^1.9|^2.0",
-                "symfony/cache": "^3.3|^4.0|^5.0"
+                "php": "^7.2.5",
+                "psr/simple-cache": "^1.0"
             },
             "require-dev": {
-                "graham-campbell/analyzer": "^2.4",
+                "graham-campbell/analyzer": "^3.0",
+                "graham-campbell/testbench-core": "^3.1",
+                "mockery/mockery": "^1.3.1",
+                "phpunit/phpunit": "^8.5|^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "GrahamCampbell\\BoundedCache\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Graham Campbell",
+                    "email": "graham@alt-three.com"
+                }
+            ],
+            "description": "A Bounded TTL PSR-16 Cache Implementation",
+            "keywords": [
+                "Bounded Cache",
+                "Bounded-Cache",
+                "Graham Campbell",
+                "GrahamCampbell",
+                "bounded",
+                "cache",
+                "psr16"
+            ],
+            "time": "2020-04-13T13:44:36+00:00"
+        },
+        {
+            "name": "graham-campbell/github",
+            "version": "v9.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/GrahamCampbell/Laravel-GitHub.git",
+                "reference": "744769bda95eab0705577c74ead32a0bc8c16937"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/GrahamCampbell/Laravel-GitHub/zipball/744769bda95eab0705577c74ead32a0bc8c16937",
+                "reference": "744769bda95eab0705577c74ead32a0bc8c16937",
+                "shasum": ""
+            },
+            "require": {
+                "graham-campbell/bounded-cache": "^1.0",
+                "graham-campbell/manager": "^4.5",
+                "illuminate/contracts": "^6.0|^7.0",
+                "illuminate/support": "^6.0|^7.0",
+                "knplabs/github-api": "2.13.*",
+                "php": "^7.2.5",
+                "php-http/cache-plugin": "^1.6",
+                "php-http/client-common": "^1.9|^2.0",
+                "symfony/cache": "^4.3|^5.0"
+            },
+            "require-dev": {
+                "graham-campbell/analyzer": "^3.0",
                 "graham-campbell/testbench": "^5.4",
                 "lcobucci/jwt": "^3.3",
                 "mockery/mockery": "^1.3.1",
                 "php-http/guzzle6-adapter": "^1.1|^2.0",
-                "phpunit/phpunit": "^6.5|^7.0|^8.0"
+                "phpunit/phpunit": "^8.5|^9.0"
             },
             "suggest": {
                 "lcobucci/jwt": "Allows using the private key authenticator (^3.3)"
@@ -782,7 +840,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "8.7-dev"
+                    "dev-master": "9.1-dev"
                 },
                 "laravel": {
                     "providers": [
@@ -819,20 +877,20 @@
                 "laravel",
                 "php-github-api"
             ],
-            "time": "2020-03-17T00:20:25+00:00"
+            "time": "2020-04-14T17:41:27+00:00"
         },
         {
             "name": "graham-campbell/manager",
-            "version": "v4.5.1",
+            "version": "v4.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GrahamCampbell/Laravel-Manager.git",
-                "reference": "36e856bb6d56a079e7bb7ef4eb47c21d0dedd5c9"
+                "reference": "69ade143dc9629448f70a19bfbd43bedf51c6093"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrahamCampbell/Laravel-Manager/zipball/36e856bb6d56a079e7bb7ef4eb47c21d0dedd5c9",
-                "reference": "36e856bb6d56a079e7bb7ef4eb47c21d0dedd5c9",
+                "url": "https://api.github.com/repos/GrahamCampbell/Laravel-Manager/zipball/69ade143dc9629448f70a19bfbd43bedf51c6093",
+                "reference": "69ade143dc9629448f70a19bfbd43bedf51c6093",
                 "shasum": ""
             },
             "require": {
@@ -879,7 +937,7 @@
                 "laravel",
                 "manager"
             ],
-            "time": "2020-03-01T11:25:27+00:00"
+            "time": "2020-04-14T12:03:27+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -8194,12 +8252,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "0f73cf4b4b9227eb8845723bc2a8869bc4dd6e8f"
+                "reference": "09afa996c68c18f49e6487b06adcb2ef27da61fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/0f73cf4b4b9227eb8845723bc2a8869bc4dd6e8f",
-                "reference": "0f73cf4b4b9227eb8845723bc2a8869bc4dd6e8f",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/09afa996c68c18f49e6487b06adcb2ef27da61fa",
+                "reference": "09afa996c68c18f49e6487b06adcb2ef27da61fa",
                 "shasum": ""
             },
             "conflict": {
@@ -8320,7 +8378,7 @@
                 "serluck/phpwhois": "<=4.2.6",
                 "shopware/shopware": "<5.3.7",
                 "silverstripe/admin": ">=1.0.3,<1.0.4|>=1.1,<1.1.1",
-                "silverstripe/assets": ">=1,<1.3.5|>=1.4,<1.4.4",
+                "silverstripe/assets": ">=1,<1.4.7|>=1.5,<1.5.2",
                 "silverstripe/cms": "<4.3.6|>=4.4,<4.4.4",
                 "silverstripe/comments": ">=1.3,<1.9.99|>=2,<2.9.99|>=3,<3.1.1",
                 "silverstripe/forum": "<=0.6.1|>=0.7,<=0.7.3",
@@ -8450,7 +8508,7 @@
                 }
             ],
             "description": "Prevents installation of composer packages with known security vulnerabilities: no API, simply require it",
-            "time": "2020-03-31T14:30:16+00:00"
+            "time": "2020-04-15T04:56:51+00:00"
         },
         {
             "name": "scrivo/highlight.php",
