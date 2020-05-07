@@ -4312,7 +4312,7 @@
         },
         {
             "name": "symfony/console",
-            "version": "v5.0.7",
+            "version": "v5.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
@@ -4685,7 +4685,7 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v5.0.7",
+            "version": "v5.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
@@ -5352,16 +5352,16 @@
         },
         {
             "name": "symfony/process",
-            "version": "v5.0.7",
+            "version": "v5.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "c5ca4a0fc16a0c888067d43fbcfe1f8a53d8e70e"
+                "reference": "3179f68dff5bad14d38c4114a1dab98030801fd7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/c5ca4a0fc16a0c888067d43fbcfe1f8a53d8e70e",
-                "reference": "c5ca4a0fc16a0c888067d43fbcfe1f8a53d8e70e",
+                "url": "https://api.github.com/repos/symfony/process/zipball/3179f68dff5bad14d38c4114a1dab98030801fd7",
+                "reference": "3179f68dff5bad14d38c4114a1dab98030801fd7",
                 "shasum": ""
             },
             "require": {
@@ -5397,7 +5397,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2020-03-27T16:56:45+00:00"
+            "time": "2020-04-15T15:59:10+00:00"
         },
         {
             "name": "symfony/routing",
@@ -6326,16 +6326,16 @@
         },
         {
             "name": "composer/ca-bundle",
-            "version": "1.2.6",
+            "version": "1.2.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/ca-bundle.git",
-                "reference": "47fe531de31fca4a1b997f87308e7d7804348f7e"
+                "reference": "95c63ab2117a72f48f5a55da9740a3273d45b7fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/47fe531de31fca4a1b997f87308e7d7804348f7e",
-                "reference": "47fe531de31fca4a1b997f87308e7d7804348f7e",
+                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/95c63ab2117a72f48f5a55da9740a3273d45b7fd",
+                "reference": "95c63ab2117a72f48f5a55da9740a3273d45b7fd",
                 "shasum": ""
             },
             "require": {
@@ -6378,20 +6378,20 @@
                 "ssl",
                 "tls"
             ],
-            "time": "2020-01-13T10:02:55+00:00"
+            "time": "2020-04-08T08:27:21+00:00"
         },
         {
             "name": "composer/composer",
-            "version": "1.10.1",
+            "version": "1.10.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "b912a45da3e2b22f5cb5a23e441b697a295ba011"
+                "reference": "be81b9c4735362c26876bdbfd3b5bc7e7f711c88"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/b912a45da3e2b22f5cb5a23e441b697a295ba011",
-                "reference": "b912a45da3e2b22f5cb5a23e441b697a295ba011",
+                "url": "https://api.github.com/repos/composer/composer/zipball/be81b9c4735362c26876bdbfd3b5bc7e7f711c88",
+                "reference": "be81b9c4735362c26876bdbfd3b5bc7e7f711c88",
                 "shasum": ""
             },
             "require": {
@@ -6410,7 +6410,8 @@
                 "symfony/process": "^2.7 || ^3.0 || ^4.0 || ^5.0"
             },
             "conflict": {
-                "symfony/console": "2.8.38"
+                "symfony/console": "2.8.38",
+                "symfony/phpunit-bridge": "3.4.40"
             },
             "require-dev": {
                 "phpspec/prophecy": "^1.10",
@@ -6458,7 +6459,7 @@
                 "dependency",
                 "package"
             ],
-            "time": "2020-03-13T19:34:27+00:00"
+            "time": "2020-05-06T08:28:10+00:00"
         },
         {
             "name": "composer/semver",
@@ -8194,12 +8195,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "0f73cf4b4b9227eb8845723bc2a8869bc4dd6e8f"
+                "reference": "f46390d28af4fdb07c09d9aabf4c4e35149a7a08"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/0f73cf4b4b9227eb8845723bc2a8869bc4dd6e8f",
-                "reference": "0f73cf4b4b9227eb8845723bc2a8869bc4dd6e8f",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/f46390d28af4fdb07c09d9aabf4c4e35149a7a08",
+                "reference": "f46390d28af4fdb07c09d9aabf4c4e35149a7a08",
                 "shasum": ""
             },
             "conflict": {
@@ -8245,6 +8246,8 @@
                 "endroid/qr-code-bundle": "<3.4.2",
                 "enshrined/svg-sanitize": "<0.13.1",
                 "erusev/parsedown": "<1.7.2",
+                "ezsystems/demobundle": ">=5.4,<5.4.6.1",
+                "ezsystems/ezdemo-ls-extension": ">=5.4,<5.4.2.1",
                 "ezsystems/ezfind-ls": ">=5.3,<5.3.6.1|>=5.4,<5.4.11.1|>=2017.12,<2017.12.0.1",
                 "ezsystems/ezplatform": ">=1.7,<1.7.9.1|>=1.13,<1.13.5.1|>=2.5,<2.5.4",
                 "ezsystems/ezplatform-admin-ui": ">=1.3,<1.3.5|>=1.4,<1.4.6",
@@ -8287,6 +8290,7 @@
                 "magento/product-community-edition": ">=2,<2.2.10|>=2.3,<2.3.2-p.2",
                 "monolog/monolog": ">=1.8,<1.12",
                 "namshi/jose": "<2.2",
+                "nzo/url-encryptor-bundle": ">=4,<4.3.2|>=5,<5.0.1",
                 "onelogin/php-saml": "<2.10.4",
                 "oneup/uploader-bundle": "<1.9.3|>=2,<2.1.5",
                 "openid/php-openid": "<2.3",
@@ -8320,7 +8324,7 @@
                 "serluck/phpwhois": "<=4.2.6",
                 "shopware/shopware": "<5.3.7",
                 "silverstripe/admin": ">=1.0.3,<1.0.4|>=1.1,<1.1.1",
-                "silverstripe/assets": ">=1,<1.3.5|>=1.4,<1.4.4",
+                "silverstripe/assets": ">=1,<1.4.7|>=1.5,<1.5.2",
                 "silverstripe/cms": "<4.3.6|>=4.4,<4.4.4",
                 "silverstripe/comments": ">=1.3,<1.9.99|>=2,<2.9.99|>=3,<3.1.1",
                 "silverstripe/forum": "<=0.6.1|>=0.7,<=0.7.3",
@@ -8333,7 +8337,7 @@
                 "silverstripe/userforms": "<3",
                 "simple-updates/phpwhois": "<=1",
                 "simplesamlphp/saml2": "<1.10.6|>=2,<2.3.8|>=3,<3.1.4",
-                "simplesamlphp/simplesamlphp": "<1.18.4",
+                "simplesamlphp/simplesamlphp": "<1.18.6",
                 "simplesamlphp/simplesamlphp-module-infocard": "<1.0.1",
                 "simplito/elliptic-php": "<1.0.6",
                 "slim/slim": "<2.6",
@@ -8450,7 +8454,7 @@
                 }
             ],
             "description": "Prevents installation of composer packages with known security vulnerabilities: no API, simply require it",
-            "time": "2020-03-31T14:30:16+00:00"
+            "time": "2020-05-04T14:37:25+00:00"
         },
         {
             "name": "scrivo/highlight.php",
@@ -9187,20 +9191,20 @@
         },
         {
             "name": "seld/jsonlint",
-            "version": "1.7.2",
+            "version": "1.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/jsonlint.git",
-                "reference": "e2e5d290e4d2a4f0eb449f510071392e00e10d19"
+                "reference": "ff2aa5420bfbc296cf6a0bc785fa5b35736de7c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/jsonlint/zipball/e2e5d290e4d2a4f0eb449f510071392e00e10d19",
-                "reference": "e2e5d290e4d2a4f0eb449f510071392e00e10d19",
+                "url": "https://api.github.com/repos/Seldaek/jsonlint/zipball/ff2aa5420bfbc296cf6a0bc785fa5b35736de7c1",
+                "reference": "ff2aa5420bfbc296cf6a0bc785fa5b35736de7c1",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.3 || ^7.0"
+                "php": "^5.3 || ^7.0 || ^8.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.0"
@@ -9232,7 +9236,7 @@
                 "parser",
                 "validator"
             ],
-            "time": "2019-10-24T14:27:39+00:00"
+            "time": "2020-04-30T19:05:18+00:00"
         },
         {
             "name": "seld/phar-utils",
@@ -9387,16 +9391,16 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v5.0.7",
+            "version": "v5.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "ca3b87dd09fff9b771731637f5379965fbfab420"
+                "reference": "7cd0dafc4353a0f62e307df90b48466379c8cc91"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/ca3b87dd09fff9b771731637f5379965fbfab420",
-                "reference": "ca3b87dd09fff9b771731637f5379965fbfab420",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/7cd0dafc4353a0f62e307df90b48466379c8cc91",
+                "reference": "7cd0dafc4353a0f62e307df90b48466379c8cc91",
                 "shasum": ""
             },
             "require": {
@@ -9433,7 +9437,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2020-03-27T16:56:45+00:00"
+            "time": "2020-04-12T14:40:17+00:00"
         },
         {
             "name": "theseer/tokenizer",
