@@ -35,6 +35,7 @@
         "netojose/laravel-bootstrap-4-forms": "^3.0",
         "php-http/guzzle6-adapter": "^2.0",
         "rollbar/rollbar-laravel": "~6.0",
+        "skyronic/laravel-file-generator": "^0.1.12",
         "spatie/laravel-activitylog": "^3.9",
         "spatie/laravel-sitemap": "^5.5",
         "symfony/yaml": "^4.3"
