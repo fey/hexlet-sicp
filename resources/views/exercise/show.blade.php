@@ -59,7 +59,7 @@
                 @else
                 <p>{{ __('exercise.show.empty_description') }}</p>
                 <p>
-                    <i class="fas fa-github-alt"></i>
+                    <i class="fab fa-github"></i>
                     <a href="https://github.com/Hexlet/hexlet-sicp/issues/122">
                         {{ __('exercise.show.help_us') }}
                     </a>

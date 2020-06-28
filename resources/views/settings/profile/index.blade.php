@@ -21,6 +21,21 @@
                             {!! Form::close() !!}
                         </div>
                     </div>
+                    <div class="card mb-2">
+                        <div class="card-body">
+                            <h1 class="card-title h3">Github</h1>
+                            <p>
+                                <i class="fab fa-github"></i>
+                                @if ($user->githubIntegration)
+                                    disable github
+                                @else
+                                    <a href="{{ route('oauth.github') }}">
+                                        enable
+                                    </a>
+                                @endif
+                            </p>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card">

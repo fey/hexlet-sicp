@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Session;
+use Laravel\Socialite\Two\GithubProvider;
+use Laravel\Socialite\Two\User as SocialiteUser;
 use Socialite;
 use Validator;
 use Exception;
@@ -39,9 +40,12 @@ class GithubController extends Controller
     public function handleProviderCallback()
     {
         try {
-            $socialiteUser = $this->socialite::driver('github')->user();
+            $provider = $this->getGithubProvider();
+            /** @var SocialiteUser $socialiteUser */
+            $socialiteUser = $provider->user();
         } catch (Exception $e) {
-            return $this->sendFailedResponse($e->getMessage());
+            flash()->error(__('auth.provider_fails'));
+            return redirect()->back();
         }
 
         $email = $socialiteUser->getEmail();
@@ -51,39 +55,16 @@ class GithubController extends Controller
         $validator = $this->validator(['email' => $email, 'name' => $name]);
 
         if ($validator->fails()) {
-            return $this->sendFailedResponse();
+            flash()->error(__('auth.provider_fails'));
+            return redirect()->back();
         }
 
-        return $this->loginOrCreateAccount($name, $email);
-    }
+        $authUser = $this->getOrCreateUserFromSocialite($name, $email);
+        $this->setGithubIntegration($authUser, $socialiteUser);
 
-    protected function loginOrCreateAccount($name, $email)
-    {
-        $userForAuth = User::firstOrNew(['email' => $email]);
-
-        if (false === $userForAuth->exists) {
-            $deleteUser = User::withTrashed()->where('email', $email)->first();
-
-            if ($deleteUser) {
-                $deleteUser->restore();
-                return redirect()->route('my');
-            }
-
-            $userForAuth->name              = $name;
-            $userForAuth->email_verified_at = now();
-            $userForAuth->password          = Hash::make(random_bytes(10));
-            $userForAuth->saveOrFail();
-        }
-
-        Auth::login($userForAuth, true);
+        Auth::login($authUser, true);
         flash()->success(__('auth.logged_in'));
 
-        return redirect()->route('my');
-    }
-
-    protected function sendFailedResponse($msg = null)
-    {
-        flash()->error($msg ?:  __('auth.provider_fails'));
         return redirect()->route('my');
     }
 
@@ -93,5 +74,45 @@ class GithubController extends Controller
             'name' => ['required', 'string', 'min:2','max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
         ]);
+    }
+
+    private function getGithubProvider(): GithubProvider
+    {
+        return $this->socialite::driver('github');
+    }
+
+    private function getOrCreateUserFromSocialite($name, $email): User
+    {
+        $user = User::withTrashed()->firstOrNew(['email' => $email]);
+
+        if ($user->trashed()) {
+            $user->restore();
+
+            return $user;
+        }
+
+        if (!$user->exists) {
+            $user->name              = $name;
+            $user->email_verified_at = now();
+            $user->password          = Hash::make(random_bytes(10));
+            $user->saveOrFail();
+        }
+
+        return $user;
+    }
+
+    private function setGithubIntegration(User $user, SocialiteUser $socialite)
+    {
+        $attributes = ['token' => $socialite->token];
+        if ($user->githubIntegration()->exists() === false) {
+            $user->githubIntegration()->create($attributes);
+
+            return;
+        }
+        $user->githubIntegration->token = $socialite->token;
+
+        $user->githubIntegration
+            ->fill($attributes)
+            ->save();
     }
 }

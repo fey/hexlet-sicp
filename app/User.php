@@ -70,4 +70,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Solution::class);
     }
+
+    public function githubIntegration()
+    {
+        return $this->hasOne(GithubIntegration::class);
+    }
 }
