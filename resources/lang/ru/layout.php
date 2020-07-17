@@ -22,9 +22,6 @@ return [
         'reset_password' => 'Забыли пароль?',
         'button' => 'Войти',
     ],
-    'welcome' => [
-        'start_learning' => 'Начать учиться',
-    ],
     'footer' => [
         'about'             => 'О проекте',
         'source_code'       => 'Исходный код',

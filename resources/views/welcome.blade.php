@@ -21,32 +21,38 @@
         <p>{{ __('welcome.about_sicp') }}
             <a href="https://guides.hexlet.io/how-to-learn-sicp/">{{ __('layout.nav.sicp_read') }}</a>
         </p>
-        <h2 class="my-3">{{ __('welcome.features') }}</h2>
+        <h3 class="my-3">{{ __('welcome.features') }}</h3>
         <ul>
             @foreach (__('welcome.features_list') as $key => $item)
             <li>{{ __(sprintf('welcome.features_list.%s', $key)) }}</li>
             @endforeach
         </ul>
-        <h2 class="my-3">{{ __('welcome.coming_soon') }}</h2>
+        <h3 class="my-3">{{ __('welcome.coming_soon') }}</h3>
         <ul>
             @foreach (__('welcome.coming_soon_list') as $key => $item)
             <li>{{ __(sprintf('welcome.coming_soon_list.%s', $key)) }}</li>
             @endforeach
 
         </ul>
-        <a class="btn btn-primary btn-lg" href="{{ (route('my')) }}">{{ __('layout.welcome.start_learning') }}</a>
+        <a class="btn btn-primary btn-lg" href="{{ (route('my')) }}">{{ __('welcome.start_learning') }}</a>
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-12">
-        @include('components.activity_chart')
+
+<h2 class="h3 mt-5">{{__('welcome.user_activities')}}</h2>
+<div class="graph">
+    <div class="d-flex justify-content-end overflow-hidden m-4">
+        <ul class="squares mb-0">
+            @foreach($chart as $square)
+                <li data-level="{{ $square }}"></li>
+            @endforeach
+        </ul>
     </div>
 </div>
 
 <div class="row">
     <div class="col-md-6">
-        <h3 class="my-3"><a href="{{ (route('log.index')) }}">{{ __('activitylog.title') }}</a></h3>
+        <h2 class="h3 my-3"><a href="{{ (route('log.index')) }}">{{ __('activitylog.title') }}</a></h2>
         @foreach($logItems as $logItem)
         <div class="media text-muted pt-1">
             <div class="media-body pb-1 mb-0 small lh-125 border-bottom border-gray">
@@ -111,7 +117,7 @@
         @endforeach
     </div>
     <div class="col-md-6">
-        <h3 class="h4 my-3">@lang('welcome.comments.latest')</h3>
+        <h2 class="h3 my-3">@lang('welcome.comments.latest')</h2>
         @foreach($comments as $comment)
         <div class="media text-muted pt-1">
             <div class="media-body pb-1 mb-0 small lh-125 border-bottom border-gray">

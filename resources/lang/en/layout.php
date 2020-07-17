@@ -22,9 +22,6 @@ return [
         'email' => 'E-mail',
         'reset_password' => 'Forgot Your Password?'
     ],
-    'welcome' => [
-        'start_learning' => 'Start learning',
-    ],
     'footer' => [
         'about'             => 'About',
         'source_code'       => 'Source code',

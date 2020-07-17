@@ -23,5 +23,7 @@ return [
     ],
     'comments' => [
         'latest' => 'Последние комментарии'
-    ]
+    ],
+    'start_learning' => 'Начать учиться',
+    'user_activities' => 'Активность пользователей'
 ];
