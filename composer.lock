@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "da4496c24840365bb7b8453c240ee131",
+    "content-hash": "9318c2d6af7af6638101bd9a586d8111",
     "packages": [
         {
             "name": "brick/math",
@@ -7586,16 +7586,16 @@
         },
         {
             "name": "heroku/heroku-buildpack-php",
-            "version": "v164",
+            "version": "v178",
             "source": {
                 "type": "git",
                 "url": "https://github.com/heroku/heroku-buildpack-php.git",
-                "reference": "65bbee93ecc41f8a7d7f909e120c614763079167"
+                "reference": "11809152efa1c7fbe2101d28ef530d689d1e56b9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/65bbee93ecc41f8a7d7f909e120c614763079167",
-                "reference": "65bbee93ecc41f8a7d7f909e120c614763079167",
+                "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/11809152efa1c7fbe2101d28ef530d689d1e56b9",
+                "reference": "11809152efa1c7fbe2101d28ef530d689d1e56b9",
                 "shasum": ""
             },
             "bin": [
@@ -7626,7 +7626,7 @@
                 "nginx",
                 "php"
             ],
-            "time": "2019-10-24T16:05:31+00:00"
+            "time": "2020-07-09T18:00:35+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
