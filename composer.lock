@@ -7349,16 +7349,16 @@
         },
         {
             "name": "tightenco/collect",
-            "version": "v7.25.0",
+            "version": "v7.26.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tightenco/collect.git",
-                "reference": "54de14fe2e8fdd0831d69601bf9c7f5e2667aa85"
+                "reference": "5e460929279ad806e59fc731e649e9b25fc8774a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tightenco/collect/zipball/54de14fe2e8fdd0831d69601bf9c7f5e2667aa85",
-                "reference": "54de14fe2e8fdd0831d69601bf9c7f5e2667aa85",
+                "url": "https://api.github.com/repos/tightenco/collect/zipball/5e460929279ad806e59fc731e649e9b25fc8774a",
+                "reference": "5e460929279ad806e59fc731e649e9b25fc8774a",
                 "shasum": ""
             },
             "require": {
@@ -7395,7 +7395,7 @@
                 "collection",
                 "laravel"
             ],
-            "time": "2020-08-21T22:28:24+00:00"
+            "time": "2020-09-05T00:05:48+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
@@ -11308,12 +11308,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/slevomat/coding-standard.git",
-                "reference": "ee75ad84cdef36c6382e787fc0f3c41a051a0621"
+                "reference": "141120cbd0ea95865f34500313a14c3eec4466ee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/slevomat/coding-standard/zipball/ee75ad84cdef36c6382e787fc0f3c41a051a0621",
-                "reference": "ee75ad84cdef36c6382e787fc0f3c41a051a0621",
+                "url": "https://api.github.com/repos/slevomat/coding-standard/zipball/141120cbd0ea95865f34500313a14c3eec4466ee",
+                "reference": "141120cbd0ea95865f34500313a14c3eec4466ee",
                 "shasum": ""
             },
             "require": {
@@ -11357,7 +11357,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-09-02T15:40:29+00:00"
+            "time": "2020-09-03T11:28:21+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
