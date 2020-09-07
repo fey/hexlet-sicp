@@ -9531,16 +9531,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "9.1.6",
+            "version": "9.1.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "d25b24b1cd14772bde4d75daeb393dc17db9f6e6"
+                "reference": "f98f8466126d83b55b924a94d2244c53c216b8fb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/d25b24b1cd14772bde4d75daeb393dc17db9f6e6",
-                "reference": "d25b24b1cd14772bde4d75daeb393dc17db9f6e6",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/f98f8466126d83b55b924a94d2244c53c216b8fb",
+                "reference": "f98f8466126d83b55b924a94d2244c53c216b8fb",
                 "shasum": ""
             },
             "require": {
@@ -9600,7 +9600,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-08-31T06:31:46+00:00"
+            "time": "2020-09-07T08:07:10+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -11308,12 +11308,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/slevomat/coding-standard.git",
-                "reference": "ee75ad84cdef36c6382e787fc0f3c41a051a0621"
+                "reference": "141120cbd0ea95865f34500313a14c3eec4466ee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/slevomat/coding-standard/zipball/ee75ad84cdef36c6382e787fc0f3c41a051a0621",
-                "reference": "ee75ad84cdef36c6382e787fc0f3c41a051a0621",
+                "url": "https://api.github.com/repos/slevomat/coding-standard/zipball/141120cbd0ea95865f34500313a14c3eec4466ee",
+                "reference": "141120cbd0ea95865f34500313a14c3eec4466ee",
                 "shasum": ""
             },
             "require": {
@@ -11357,7 +11357,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-09-02T15:40:29+00:00"
+            "time": "2020-09-03T11:28:21+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
