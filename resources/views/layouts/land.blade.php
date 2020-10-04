@@ -14,9 +14,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    @if (config('app.env') == 'production')
-    @include('layouts.deps._gtm_head')
-    @endif
+    @includeWhen(app()->env === 'production', 'layouts.deps._gtm_head')
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -27,9 +25,7 @@
 </head>
 
 <body class="min-vh-100 d-flex flex-column">
-    @if (config('app.env') == 'production')
-    @include('layouts.deps._gtm_body')
-    @endif
+    @includeWhen(app()->env === 'production', 'layouts.deps._gtm_body')
     @include('layouts._nav')
     <main>
         @yield('content')
