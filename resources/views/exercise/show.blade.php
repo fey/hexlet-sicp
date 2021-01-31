@@ -75,8 +75,14 @@
             <div>
                 @auth
                     <div class="d-flex mb-4">
+                        @if (app()->environment() !== 'production')
                         <button type="button" class="mr-1 btn btn-primary" data-toggle="modal"
-                                data-target="#interExercise">{{ __('solution.add_solution') }}</button>
+                                data-target="#check-solution">{{ __('solution.check') }}
+                        </button>
+                        @endif
+                        <button type="button" class="mr-1 btn btn-primary" data-toggle="modal"
+                                data-target="#interExercise">{{ __('solution.add_solution') }}
+                        </button>
                         @if($exercise->solutions()->exists())
                             <a
                                 class="btn btn-secondary mr-1"
@@ -89,6 +95,21 @@
                             <button type="button" class="mr-1 btn btn-primary btn-light" data-toggle="modal"
                                     data-target="#showExercises">{{ __('solution.show_solution') }}</button>
                         @endif
+                        <div class="modal fade" id="check-solution" tabindex="-1" role="dialog" aria-labelledby="modal check-solution" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">{{ __('solution.check.solution') }}</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        @livewire('solution-checker', compact('exercise'))
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         @solutions(['exercise' => $exercise, 'userSolutions' => $userSolutions])
 
