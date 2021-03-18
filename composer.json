@@ -46,7 +46,7 @@
         "beyondcode/laravel-dump-server": "^1.3",
         "facade/ignition": "^2.0",
         "fzaninotto/faker": "^1.4",
-        "heroku/heroku-buildpack-php": "^164.0",
+        "heroku/heroku-buildpack-php": "^190",
         "mockery/mockery": "^1.3",
         "nunomaduro/collision": "~5.0",
         "nunomaduro/larastan": "^0.6.1",
