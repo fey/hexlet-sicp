@@ -126,12 +126,12 @@
             "version": "v1.4.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/clue/php-stream-filter.git",
+                "url": "https://github.com/clue/stream-filter.git",
                 "reference": "5a58cc30a8bd6a4eb8f856adf61dd3e013f53f71"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/clue/php-stream-filter/zipball/5a58cc30a8bd6a4eb8f856adf61dd3e013f53f71",
+                "url": "https://api.github.com/repos/clue/stream-filter/zipball/5a58cc30a8bd6a4eb8f856adf61dd3e013f53f71",
                 "reference": "5a58cc30a8bd6a4eb8f856adf61dd3e013f53f71",
                 "shasum": ""
             },
@@ -170,6 +170,16 @@
                 "stream",
                 "stream_filter_append",
                 "stream_filter_register"
+            ],
+            "funding": [
+                {
+                    "url": "https://clue.engineering/support",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/clue",
+                    "type": "github"
+                }
             ],
             "time": "2019-04-09T12:31:48+00:00"
         },
@@ -230,7 +240,7 @@
             "keywords": [
                 "laravel"
             ],
-            "abandoned": true,
+            "abandoned": "diglactic/laravel-breadcrumbs",
             "time": "2019-12-30T22:50:51+00:00"
         },
         {
@@ -7352,12 +7362,12 @@
             "version": "v7.26.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/tightenco/collect.git",
+                "url": "https://github.com/tighten/collect.git",
                 "reference": "5e460929279ad806e59fc731e649e9b25fc8774a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tightenco/collect/zipball/5e460929279ad806e59fc731e649e9b25fc8774a",
+                "url": "https://api.github.com/repos/tighten/collect/zipball/5e460929279ad806e59fc731e649e9b25fc8774a",
                 "reference": "5e460929279ad806e59fc731e649e9b25fc8774a",
                 "shasum": ""
             },
@@ -8023,20 +8033,20 @@
         },
         {
             "name": "composer/semver",
-            "version": "1.5.1",
+            "version": "1.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/semver.git",
-                "reference": "c6bea70230ef4dd483e6bbcab6005f682ed3a8de"
+                "reference": "647490bbcaf7fc4891c58f47b825eb99d19c377a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/semver/zipball/c6bea70230ef4dd483e6bbcab6005f682ed3a8de",
-                "reference": "c6bea70230ef4dd483e6bbcab6005f682ed3a8de",
+                "url": "https://api.github.com/repos/composer/semver/zipball/647490bbcaf7fc4891c58f47b825eb99d19c377a",
+                "reference": "647490bbcaf7fc4891c58f47b825eb99d19c377a",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.3.2 || ^7.0"
+                "php": "^5.3.2 || ^7.0 || ^8.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^4.5 || ^5.0.5"
@@ -8080,7 +8090,21 @@
                 "validation",
                 "versioning"
             ],
-            "time": "2020-01-13T12:06:48+00:00"
+            "funding": [
+                {
+                    "url": "https://packagist.com",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/composer",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/composer/composer",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-12-03T15:47:16+00:00"
         },
         {
             "name": "composer/spdx-licenses",
@@ -8593,6 +8617,7 @@
                 "faker",
                 "fixtures"
             ],
+            "abandoned": true,
             "time": "2019-12-12T13:22:17+00:00"
         },
         {
@@ -11596,12 +11621,12 @@
             "version": "1.9.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/webmozart/assert.git",
+                "url": "https://github.com/webmozarts/assert.git",
                 "reference": "bafc69caeb4d49c39fd0779086c03a3738cbb389"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webmozart/assert/zipball/bafc69caeb4d49c39fd0779086c03a3738cbb389",
+                "url": "https://api.github.com/repos/webmozarts/assert/zipball/bafc69caeb4d49c39fd0779086c03a3738cbb389",
                 "reference": "bafc69caeb4d49c39fd0779086c03a3738cbb389",
                 "shasum": ""
             },
