@@ -95,4 +95,6 @@
         <div class="col-md-6 mt-2">
             @livewire('exercise-editor', ['exercise' => $exercise, 'user' => $authUser])
         </div>
+        <script src="{{ mix('js/codemirror.js')}}"></script>
 @endsection
+
