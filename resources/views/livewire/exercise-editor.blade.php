@@ -62,7 +62,9 @@
                 {{ BsForm::close() }}
             </div>
             <div class="tab-pane fade" id="editor-tests" role="tabpanel" aria-labelledby="editor-tests">
-                <pre><code class="lang-scheme hljs">{{ $tests }}</code></pre>
+                <div wire:ignore>
+                    <pre><code class="lang-scheme hljs">{{ $tests }}</code></pre>
+                </div>
             </div>
             <div class="tab-pane fade" id="editor-output" role="tabpanel" aria-labelledby="editor-output">
                 <pre><code class="lang-vbnet hljs x-text-pre-wrap">{{ $checkResult['output'] }}</code></pre>

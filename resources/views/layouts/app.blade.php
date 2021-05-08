@@ -40,6 +40,8 @@
     @livewireScripts
     <script src="{{ mix('js/hljs.js')}}"></script>
 
+    <script src="{{ mix('js/codemirror.js')}}"></script>
+
     @includeWhen(app()->environment('production'), 'layouts.deps._metrika')
 </body>
 </html>

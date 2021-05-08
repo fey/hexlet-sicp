@@ -1,3 +1,5 @@
+import hljs from "highlight.js/lib/core";
+
 require('codemirror/mode/commonlisp/commonlisp.js');
 const CodeMirror = require('codemirror');
 const parinferCodeMirror = require('parinfer-codemirror');
@@ -10,6 +12,5 @@ const editor = CodeMirror.fromTextArea(textArea, {
 parinferCodeMirror.init(editor);
 
 editor.on('change', () => {
-  // textArea.innerText = editor.getValue();
   editor.save();
 });
