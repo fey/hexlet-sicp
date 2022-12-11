@@ -45,3 +45,8 @@ RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -
 RUN apt-get update && apt-get install -y nodejs
 
 ENV PATH=node_modules/.bin:$PATH
+ENV PHP_CLI_SERVER_WORKER=5
+
+EXPOSE 8000
+
+ENTRYPOINT [ "make start-app" ]
