@@ -46,19 +46,3 @@ RUN apt-get update && apt-get install -y nodejs
 
 ENV PATH=node_modules/.bin:$PATH
 ENV PHP_CLI_SERVER_WORKER=5
-
-EXPOSE 8000
-
-COPY package.json package-lock.json ./
-RUN npm ci
-
-ENV COMPOSER_ALLOW_SUPERUSER=1
-
-COPY composer.json composer.lock ./
-RUN composer install --no-dev --no-scripts
-
-COPY . .
-
-RUN composer run post-autoload-dump
-
-CMD make start-app
