@@ -21,3 +21,5 @@ public/js
 public/img/*
 public/images
 composer.phar
+allure-report
+allurectl

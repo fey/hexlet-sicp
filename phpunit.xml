@@ -36,4 +36,7 @@
         <env name="QUEUE_DRIVER" value="sync"/>
         <env name="SESSION_DRIVER" value="array"/>
     </php>
+    <extensions>
+        <extension class="Qameta\Allure\PHPUnit\AllureExtension" />
+    </extensions>
 </phpunit>

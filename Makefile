@@ -87,3 +87,10 @@ pre-push-hook: lint analyse
 
 docker-build-render:
 	DOCKER_BUILDKIT=1 COMPOSE_DOCKER_CLI_BUILD=1 docker build . -t hexlet-sicp:cached
+
+# allure-report:
+# 	./allurectl upload --endpoint https://hexlet.testops.cloud \
+#     --token 119a1d72-06c4-444f-aa1b-6d0eb7d07311 \
+#     --project-id 100 \
+#     --launch-name "Local PC manual launch 2200-12-31" \
+#     build/allure-results
