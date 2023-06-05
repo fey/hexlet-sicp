@@ -2,13 +2,16 @@
 
 namespace Tests\Feature\Http\Controllers;
 
+use Qameta\Allure\Attribute\Description;
+use Qameta\Allure\Attribute\DisplayName;
+use Qameta\Allure\Attribute\Feature;
 use Tests\TestCase;
-use Qameta\Allure\Attribute\Title;
 
-#[Title("Проверка главной страницы")]
+#[DisplayName('Открытие главной страницы')]
+#[Feature("Главная страница")]
 class HomeControllerTest extends TestCase
 {
-    #[Title("Возможность открытия главной страницы гостем")]
+    #[Description("Возможность открытия главной страницы гостем")]
     public function testIndex(): void
     {
         $response = $this->get(route('home'));
@@ -16,7 +19,7 @@ class HomeControllerTest extends TestCase
         $response->assertOk();
     }
 
-    #[Title("Ссылка для dev-логина не видна")]
+    #[Description("Ссылка для dev-логина видна скрыта")]
     public function testNotSeeDevLogin(): void
     {
         $response = $this->get(route('home'));
