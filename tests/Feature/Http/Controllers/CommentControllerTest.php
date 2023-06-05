@@ -10,8 +10,11 @@ use Database\Seeders\ChaptersTableSeeder;
 use Database\Seeders\ExercisesTableSeeder;
 use Database\Seeders\UsersTableSeeder;
 use Illuminate\Database\Eloquent\Model;
+use Qameta\Allure\Attribute\DisplayName;
+use Qameta\Allure\Attribute\Feature;
 use Tests\ControllerTestCase;
 
+#[Feature('Комментарии')]
 class CommentControllerTest extends ControllerTestCase
 {
     public function setUp(): void
@@ -29,6 +32,7 @@ class CommentControllerTest extends ControllerTestCase
     /**
      * @dataProvider dataCommentable
      */
+    #[DisplayName('Созданный комментарий отображается на странице')]
     public function testShow(string $commentableClass): void
     {
         /** @var Exercise|Chapter $commentableClass */
@@ -44,6 +48,7 @@ class CommentControllerTest extends ControllerTestCase
     /**
      * @dataProvider dataCommentable
      */
+    #[DisplayName('Пользователь может оставить комментарий')]
     public function testStore(string $commentableClass): void
     {
         /** @var Exercise|Chapter $commentableClass */
@@ -67,6 +72,7 @@ class CommentControllerTest extends ControllerTestCase
     /**
      * @dataProvider dataCommentable
      */
+    #[DisplayName('Пользователь может отредактировать свой комментарий')]
     public function testUpdate(string $commentableClass): void
     {
         /** @var Exercise|Chapter $commentableClass */
@@ -94,6 +100,7 @@ class CommentControllerTest extends ControllerTestCase
     /**
      * @dataProvider dataCommentable
      */
+    #[DisplayName('Пользователь может удалить свой комментарий')]
     public function testDestroy(string $commentableClass): void
     {
         /** @var Exercise|Chapter $commentableClass */

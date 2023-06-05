@@ -5,8 +5,11 @@ namespace Tests\Feature\Http\Controllers;
 use App\Models\Chapter;
 use App\Services\ActivityService;
 use Database\Seeders\ChaptersTableSeeder;
+use Qameta\Allure\Attribute\DisplayName;
+use Qameta\Allure\Attribute\Feature;
 use Tests\ControllerTestCase;
 
+#[Feature('Лог активностей')]
 class ActivityControllerTest extends ControllerTestCase
 {
     protected function setUp(): void
@@ -19,6 +22,7 @@ class ActivityControllerTest extends ControllerTestCase
         $this->actingAs($this->user);
     }
 
+    #[DisplayName('В лог активностей записывается добавление глав')]
     public function testStoreAddChapters(): void
     {
         $chapters = Chapter::limit(3)->get();
@@ -36,6 +40,7 @@ class ActivityControllerTest extends ControllerTestCase
         ]);
     }
 
+    #[DisplayName('В лог активностей записывается удаление глав')]
     public function testStoreRemovedChapters(): void
     {
         $chapters = Chapter::limit(3)->get();

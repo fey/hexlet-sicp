@@ -4,10 +4,14 @@ namespace Tests\Feature\Http\Controllers;
 
 use Github\Api\Gists;
 use GrahamCampbell\GitHub\GitHubManager;
+use Qameta\Allure\Attribute\DisplayName;
+use Qameta\Allure\Attribute\Feature;
 use Tests\TestCase;
 
+#[Feature('Sitemap')]
 class SitemapControllerTest extends TestCase
 {
+    #[DisplayName('Sitemap сайта корректна и доступна')]
     public function testIndex(): void
     {
         $gists = $this->createMock(Gists::class);
