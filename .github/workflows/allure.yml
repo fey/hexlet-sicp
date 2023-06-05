@@ -35,25 +35,14 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - uses: satackey/action-docker-layer-caching@v0.0.11
-      - name: Run CI
-        run: make ci
 
-      - name: Set up JDK 1.8
-        uses: actions/setup-java@v1
-        with:
-          java-version: 1.8
       - name: install and configure allurectl
         uses: allure-framework/setup-allurectl@v1
         with:
           allure-endpoint: https://hexlet.testops.cloud
           allure-token: ${{ secrets.ALLURE_TOKEN }}
           allure-project-id: ${{ secrets.ALLURE_PROJECT_ID }}
-      - name: Build with Gradle
+
+      - name: run CI
         run: |
-          allurectl watch -- ./gradlew clean test
-          export $( allurectl job-run env)
-          printenv | grep TEST_
-          printenv | grep ALLURE_
-        env:
-          TEST_ENDPOINT: ${{ github.event.inputs.TEST_ENDPOINT }}
-          TEST_BROWSER: ${{ github.event.inputs.TEST_BROWSER }}
+          allurectl watch -- make ci
