@@ -43,9 +43,12 @@ jobs:
           allure-token: ${{ secrets.ALLURE_TOKEN }}
           allure-project-id: ${{ secrets.ALLURE_PROJECT_ID }}
 
-      - name: run CI
-        run: |
-          allurectl watch -- make ci
+      - name: Prepare TestPlan
+        run: allurectl job-run plan --output-file ${ALLURE_TESTPLAN_PATH}
+
+      # - name: run CI
+      #   run: |
+      #     allurectl watch -- make ci
 
       - uses: actions/upload-artifact@v3
         with:
