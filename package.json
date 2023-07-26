@@ -31,7 +31,7 @@
     "codemirror": "^6.0.1",
     "date-fns": "^2.29.3",
     "highlight.js": "^11.x",
-    "i18next": "^21.5.4",
+    "i18next": "^23.2.11",
     "jquery": "^3.6.0",
     "jquery-ujs": "^1.2.3",
     "lodash": "^4.17.21",
