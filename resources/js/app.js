@@ -6,6 +6,12 @@ import correctionListener from './correction';
 
 import 'jquery-ujs';
 
+
+import.meta.glob([
+  '../images/**',
+]);
+
+
 window.bootstrap = bootstrap;
 window.$ = $;
 window.jQuery = $;
