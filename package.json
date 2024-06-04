@@ -10,7 +10,7 @@
         "heroku-postbuild": "npm run build",
         "lint-js": "node_modules/.bin/eslint --ext .jsx,.js ./resources/js",
         "lint-js-fix": "node_modules/.bin/eslint --fix --ext .jsx,.js ./resources/js",
-        "dev": "vite",
+        "dev": "vite --host 0.0.0.0",
         "build": "vite build"
     },
     "dependencies": {
