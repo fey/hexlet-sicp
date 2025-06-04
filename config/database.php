@@ -94,7 +94,7 @@ return [
         'sqlite_test' => [
             'driver' => 'sqlite',
             'url' => env('TEST_DATABASE_URL'),
-            'database' => env('TEST_DB_DATABASE', ':memory:'),
+            'database' => env('TEST_DB_DATABASE', database_path('testing.sqlite')),
             'prefix' => '',
             'foreign_key_constraints' => env('TEST_DB_FOREIGN_KEYS', true),
         ],

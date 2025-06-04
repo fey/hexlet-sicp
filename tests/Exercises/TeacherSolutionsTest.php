@@ -23,8 +23,8 @@ class TeacherSolutionsTest extends TestCase
         parent::setUp();
 
         // FIXME: setup database only once
-        $this->seed(ChaptersTableSeeder::class);
-        $this->seed(ExercisesTableSeeder::class);
+        // $this->seed(ChaptersTableSeeder::class);
+        // $this->seed(ExercisesTableSeeder::class);
 
         $this->solutionChecker = new SolutionChecker();
 
