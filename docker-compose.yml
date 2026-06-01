@@ -11,6 +11,8 @@ services:
     depends_on:
       - database
     command: ["make", "start-app"]
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   frontend:
     build:
@@ -21,6 +23,8 @@ services:
     ports:
       - 5173:5173
     command: ["make", "start-frontend"]
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   database:
     image: postgres:18-alpine
