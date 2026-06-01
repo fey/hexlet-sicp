@@ -17,4 +17,3 @@ Route::namespace('Api')->name('api.')->group(function (): void {
     Route::resource('exercises.check', 'Exercise\CheckController')->only(['store'])->middleware('throttle:10,1');
     Route::resource('exercises.solutions', 'Exercise\SolutionController')->only(['store']);
 });
-

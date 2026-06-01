@@ -35,10 +35,10 @@ class HomeController extends Controller
         $filter = Request::query('filter', '');
         $statisticTable = $this->getStatisticTable($filter);
         $logItems = Activity::with('causer', 'subject')->latest()->limit(10)->get()
-            ->filter(fn (Activity $activity) => $activity->subject && $activity->causer);
+            ->filter(fn(Activity $activity) => $activity->subject && $activity->causer);
         $activityChart = ActivityChart::all();
         $comments = Comment::with('user', 'commentable')->latest()->limit(10)->get()
-            ->filter(fn (Comment $comment) => $comment->user);
+            ->filter(fn(Comment $comment) => $comment->user);
 
         return view('home.index', compact(
             'logItems',
