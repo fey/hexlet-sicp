@@ -1,4 +1,4 @@
-BUILD_ARGS:= --build-arg UID=$(shell id -u) --build-arg GID=$(shell id -u)
+BUILD_ARGS:= --build-arg UID=$(shell id -u) --build-arg GID=$(shell id -g)
 
 compose: compose-down compose-setup compose-start
 

@@ -3,9 +3,12 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
     volumes:
       - .:/app:delegated
-      - ~/.bash_history:/home/sicp/.bash_history:delegated
+      - ~/.bash_history:/home/ubuntu/.bash_history:delegated
     ports:
       - "8000:8000"
     depends_on:
@@ -18,6 +21,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
     volumes:
       - .:/app:delegated
     ports:
