@@ -47,3 +47,10 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 COPY ./xdebug.ini /etc/php/${PHP_VERSION}/cli/conf.d/99-xdebug-custom.ini
 
 ENV PATH=/app/node_modules/.bin/:${PATH}
+
+ARG UID=1000
+ARG GID=1000
+
+RUN groupmod -g ${GID} ubuntu && usermod -u ${UID} -g ${GID} ubuntu
+
+USER ubuntu
