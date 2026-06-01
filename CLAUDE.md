@@ -1,6 +1,6 @@
-# CLAUDE.md
+# AGENTS.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to AI coding agents (Claude Code, Codex, Cursor, Aider, Copilot, and others) working with this repository.
 
 ## Project
 
@@ -60,10 +60,23 @@ Docker: команды с префиксом `compose-*` в `make-compose.mk` (�
 ### Тесты
 - Базовые классы: `tests/TestCase.php` (RefreshDatabase, WithFaker) и `tests/ControllerTestCase.php` (создаёт авторизованного User в setUp). Фабрики в `database/factories`. Тестовое окружение — SQLite `:memory:`.
 
+## Security
+
+- User Racket/Scheme code is executed inside `racket/sandbox` with strict limits: memory 256 MB, CPU 128 s, network/subprocess/file access blocked.
+- Temp solution files are named with a random identifier and deleted after the check.
+- Do not add new shell execution paths without equivalent sandboxing.
+
 ## Conventions
 
 - PHP: PSR-12 + Slevomat (phpcs.xml). Строгие сравнения `===`, обязательные null-coalesce, **запрет `++`/`--`**, trailing commas в массивах, без mixed type hints. Запускать `make lint-php` / `make lint-fix`.
 - JS/React: ESLint flat config (eslint.config.js) — React 19 (без prop-types и импорта React в JSX), arrow-parens always, comma-dangle always-multiline. Blade форматируется prettier через @shufo/prettier-plugin-blade.
+
+## Commit & PR conventions
+
+- **Branch naming:** `feature/<issue-number>-short-description` or `fix/<issue-number>-short-description`
+- **Commits:** Conventional Commits with issue reference — `feat: add solution cleanup (#42)` (the `#42` creates a GitHub link automatically)
+- PR title: imperative mood, under 72 characters
+- Run `make lint` and `make test` before pushing (pre-push hook enforces lint + analyse)
 
 ===
 
