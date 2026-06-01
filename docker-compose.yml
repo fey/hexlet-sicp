@@ -29,7 +29,7 @@ services:
     ports:
       - 54320:5432
     volumes:
-      - hexlet-sicp-pgdata:/var/lib/postgresql/data
+      - hexlet-sicp-pgdata:/var/lib/postgresql
 
 volumes:
   hexlet-sicp-pgdata:
