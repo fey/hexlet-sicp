@@ -70,7 +70,7 @@ ci:
 
 ci-solutions:
 	docker compose -f docker-compose.ci.yml -p hexlet-sicp-ci build ${BUILD_ARGS}
-	docker compose -f docker-compose.ci.yml -p hexlet-sicp-ci run --rm application make install-app test-solutions
+	docker compose -f docker-compose.ci.yml -p hexlet-sicp-ci run --rm application make install-app test-solutions test-sandbox
 	docker compose -f docker-compose.ci.yml -p hexlet-sicp-ci down -v --remove-orphans
 
 stage-setup:
