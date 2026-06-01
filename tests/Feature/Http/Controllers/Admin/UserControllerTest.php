@@ -14,8 +14,8 @@ class UserControllerTest extends ControllerTestCase
     {
         parent::setUp();
 
-        $this->adminUser = User::factory()->create(['is_admin' => true]);
-        $this->regularUser = User::factory()->create(['is_admin' => false]);
+        $this->adminUser = User::factory()->admin()->create();
+        $this->regularUser = User::factory()->regular()->create();
     }
 
     public function testIndexAsAdmin(): void
