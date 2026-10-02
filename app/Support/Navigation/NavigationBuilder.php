@@ -13,8 +13,8 @@ use Illuminate\Http\Request;
 use LaravelLocalization;
 
 /**
- * Состав шапки и футера. Пока его рендерит только Inertia-шелл;
- * _nav.blade.php и _footer.blade.php переводятся на этот класс в #1980.
+ * Состав шапки и футера. Рендерят его Inertia-шелл (shared prop `nav`)
+ * и Blade-лейаут (_nav.blade.php и _footer.blade.php через ViewServiceProvider).
  */
 class NavigationBuilder
 {
@@ -114,7 +114,11 @@ class NavigationBuilder
                 ? $this->link('layout.nav.sicp_read', 'https://guides.hexlet.io/how-to-learn-sicp/')
                 : $this->link('layout.nav.sicp_read', route('pages.show', ['page' => 'how-to-learn-sicp'])),
             $this->route('layout.nav.rating', 'top.index'),
-            $this->link('layout.nav.sicp_book', TemplateHelper::getBookLink($locale)),
+            new NavItemData(
+                label: __('layout.nav.sicp_book'),
+                href: TemplateHelper::getBookLink($locale),
+                highlight: true,
+            ),
         ];
 
         if ($user?->can('accessAdmin', User::class)) {

@@ -155,6 +155,7 @@ declare namespace App {
                 method: string | null;
                 icon: string | null;
                 children: App.DTO.Navigation.NavItemData[];
+                highlight: boolean;
             };
             export type NavSectionData = {
                 title: string | null;
