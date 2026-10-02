@@ -1,6 +1,7 @@
 import { Head } from '@inertiajs/react'
-import { Anchor, List, Table, Text, Title } from '@mantine/core'
+import { Anchor, List, Text, Title } from '@mantine/core'
 import { useTranslation } from 'react-i18next'
+import { type Column, DataTable } from '@/components/ui/DataTable'
 import { Pagination } from '@/components/ui/Pagination'
 import AppLayout from '@/layouts/AppLayout'
 
@@ -37,34 +38,22 @@ function Description({ item }: { item: Item }) {
 export default function ActivityIndex({ items, pagination }: App.DTO.Activity.ActivityPageData) {
   const { t } = useTranslation()
 
+  const columns: Column<Item>[] = [
+    {
+      label: t('activitylog.user'),
+      render: (item) => item.causerUrl && <Anchor href={item.causerUrl}>{item.causerName}</Anchor>,
+    },
+    { label: t('activitylog.description'), render: (item) => <Description item={item} /> },
+    { label: t('activitylog.time'), render: (item) => item.createdAt },
+  ]
+
   return (
     <AppLayout>
       <Head title={t('activitylog.title')} />
       <Title order={1} size="h3" my="md">
         {t('activitylog.title')}
       </Title>
-      <Table.ScrollContainer minWidth={600}>
-        <Table striped>
-          <Table.Thead>
-            <Table.Tr>
-              <Table.Th>{t('activitylog.user')}</Table.Th>
-              <Table.Th>{t('activitylog.description')}</Table.Th>
-              <Table.Th>{t('activitylog.time')}</Table.Th>
-            </Table.Tr>
-          </Table.Thead>
-          <Table.Tbody>
-            {items.map((item) => (
-              <Table.Tr key={item.id}>
-                <Table.Td>{item.causerUrl && <Anchor href={item.causerUrl}>{item.causerName}</Anchor>}</Table.Td>
-                <Table.Td>
-                  <Description item={item} />
-                </Table.Td>
-                <Table.Td>{item.createdAt}</Table.Td>
-              </Table.Tr>
-            ))}
-          </Table.Tbody>
-        </Table>
-      </Table.ScrollContainer>
+      <DataTable columns={columns} items={items} striped />
       <Pagination pagination={pagination} />
     </AppLayout>
   )

@@ -3,15 +3,20 @@
 namespace App\Http\Controllers\Admin;
 
 use App\DTO\Admin\UpdateUserData;
+use App\DTO\Admin\UserFilterData;
+use App\DTO\Admin\UserListItemData;
+use App\DTO\Admin\UsersPageData;
+use App\DTO\PaginationData;
 use App\Models\User;
+use App\Support\Navigation\NavigationBuilder;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
+use Inertia\Response;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class UserController extends AdminController
 {
-    public function index(Request $request): View
+    public function index(Request $request, NavigationBuilder $navigation): Response
     {
         $users = QueryBuilder::for(User::class)
             ->allowedFilters(
@@ -19,10 +24,23 @@ class UserController extends AdminController
                 AllowedFilter::partial('email'),
             )
             ->latest()
+            ->orderByDesc('id')
             ->paginate(50)
-            ->appends($request->query());
+            ->withQueryString();
 
-        return view('admin.users', compact('users'));
+        $page = new UsersPageData(
+            items: array_map(UserListItemData::fromModel(...), $users->items()),
+            pagination: PaginationData::fromPaginator($users),
+            filter: new UserFilterData(
+                name: $request->input('filter.name'),
+                email: $request->input('filter.email'),
+            ),
+            filterUrl: route('admin.users.index'),
+            menu: $navigation->admin($request->only('filter')),
+        );
+
+        return $this->inertia($page->toArray())
+            ->withViewData(['robots' => 'noindex, nofollow']);
     }
 
     public function edit(User $user)

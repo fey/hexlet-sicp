@@ -23,6 +23,7 @@ class NavigationBuilder
         'settings.profile.index',
         'settings.account.index',
         'log.index',
+        'admin.users.index',
     ];
 
     public function __construct(private Request $request)
@@ -62,6 +63,24 @@ class NavigationBuilder
     }
 
     /**
+     * Меню админки. Боковое меню админской страницы передаёт её фильтр, чтобы
+     * пользователя, найденного в одном списке, искать и в других. В шапку фильтр
+     * не попадает: на публичных страницах у него другие поля.
+     *
+     * @param array<string, array<string, string|null>> $filter
+     * @return array<int, NavItemData>
+     */
+    public function admin(array $filter = []): array
+    {
+        return [
+            $this->route('admin.users.title', 'admin.users.index', 'users', $filter),
+            $this->route('admin.comments.title', 'admin.comments.index', 'messages', $filter),
+            $this->route('admin.solutions.title', 'admin.solutions.index', 'code', $filter),
+            $this->route('admin.export.title', 'admin.export.index', 'download', $filter),
+        ];
+    }
+
+    /**
      * @return array<int, NavItemData>
      */
     private function main(string $locale, ?User $user): array
@@ -82,12 +101,7 @@ class NavigationBuilder
                 label: __('admin.title'),
                 href: route('admin.users.index'),
                 icon: 'shield-lock',
-                children: [
-                    $this->route('admin.users.title', 'admin.users.index', icon: 'users'),
-                    $this->route('admin.comments.title', 'admin.comments.index', icon: 'messages'),
-                    $this->route('admin.solutions.title', 'admin.solutions.index', icon: 'code'),
-                    $this->route('admin.export.title', 'admin.export.index', icon: 'download'),
-                ],
+                children: $this->admin(),
             );
         }
 
@@ -157,11 +171,18 @@ class NavigationBuilder
         ];
     }
 
-    private function route(string $labelKey, string $routeName, ?string $icon = null): NavItemData
-    {
+    /**
+     * @param array<string, array<string, string|null>> $parameters
+     */
+    private function route(
+        string $labelKey,
+        string $routeName,
+        ?string $icon = null,
+        array $parameters = [],
+    ): NavItemData {
         return new NavItemData(
             label: __($labelKey),
-            href: route($routeName),
+            href: route($routeName, $parameters),
             active: $this->request->routeIs($routeName),
             inertia: in_array($routeName, self::INERTIA_ROUTES, true),
             icon: $icon,

@@ -53,6 +53,26 @@ declare namespace App {
                 github_name: string | null;
                 is_admin: boolean | null;
             };
+            export type UserFilterData = {
+                name: string | null;
+                email: string | null;
+            };
+            export type UserListItemData = {
+                id: number;
+                name: string;
+                email: string;
+                isAdmin: boolean;
+                createdAt: string;
+                showUrl: string;
+                editUrl: string;
+            };
+            export type UsersPageData = {
+                items: App.DTO.Admin.UserListItemData[];
+                pagination: App.DTO.PaginationData;
+                filter: App.DTO.Admin.UserFilterData;
+                filterUrl: string;
+                menu: App.DTO.Navigation.NavItemData[];
+            };
         }
         namespace Api {
             export type CheckSolutionData = {

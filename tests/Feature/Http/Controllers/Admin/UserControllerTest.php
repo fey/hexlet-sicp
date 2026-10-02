@@ -3,6 +3,7 @@
 namespace Tests\Feature\Http\Controllers\Admin;
 
 use App\Models\User;
+use Inertia\Testing\AssertableInertia as Assert;
 use Tests\ControllerTestCase;
 
 class UserControllerTest extends ControllerTestCase
@@ -22,11 +23,54 @@ class UserControllerTest extends ControllerTestCase
     {
         $this->actingAs($this->adminUser);
 
-        $response = $this->get(route('admin.users.index'));
+        $this->get(route('admin.users.index'))
+            ->assertOk()
+            ->assertSee('<meta name="robots" content="noindex, nofollow">', false)
+            ->assertInertia(fn(Assert $page) => $page
+                ->component('Admin/User/Index')
+                ->where('pagination.total', User::count())
+                ->where('filterUrl', route('admin.users.index'))
+                ->where('filter', ['name' => null, 'email' => null])
+                ->has('menu', 4)
+                ->where('menu.0.active', true)
+                ->where('menu.3.href', route('admin.export.index'))
+                ->has('items.0', fn(Assert $item) => $item
+                    ->where('id', $this->regularUser->id)
+                    ->where('name', $this->regularUser->name)
+                    ->where('email', $this->regularUser->email)
+                    ->where('isAdmin', false)
+                    ->where('createdAt', $this->regularUser->created_at->format('d.m.Y H:i'))
+                    ->where('showUrl', route('users.show', $this->regularUser))
+                    ->where('editUrl', route('admin.users.edit', $this->regularUser))));
+    }
 
-        $response->assertOk();
-        $response->assertViewIs('admin.users');
-        $response->assertViewHas('users');
+    public function testIndexFiltersByName(): void
+    {
+        $this->actingAs($this->adminUser);
+        $match = User::factory()->create(['name' => 'Zebediah Quux']);
+        $filter = ['filter' => ['name' => 'ebediah q']];
+
+        $this->get(route('admin.users.index', $filter))
+            ->assertInertia(fn(Assert $page) => $page
+                ->has('items', 1)
+                ->where('items.0.id', $match->id)
+                ->where('filter.name', 'ebediah q')
+                // Раздел админки, открытый из меню, ищет того же пользователя.
+                ->where('menu.1.href', route('admin.comments.index', $filter))
+                ->etc());
+    }
+
+    public function testPaginationKeepsFilter(): void
+    {
+        $this->actingAs($this->adminUser);
+        User::factory()->count(51)->create(['email' => fn() => $this->faker->unique()->userName . '@paged.test']);
+        $filter = ['filter' => ['email' => '@paged.test']];
+
+        $this->get(route('admin.users.index', $filter))
+            ->assertInertia(fn(Assert $page) => $page
+                ->where('pagination.lastPage', 2)
+                ->where('pagination.links.2.url', route('admin.users.index', [...$filter, 'page' => 2]))
+                ->etc());
     }
 
     public function testIndexAsRegularUserDenied(): void
