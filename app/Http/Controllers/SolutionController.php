@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DTO\Solution\SolutionShowPageData;
 use App\Models\Exercise;
 use App\Models\Solution;
 use App\Presenters\ExercisePresenter;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 use Illuminate\Contracts\View\View;
+use Inertia\Response;
 
 class SolutionController extends Controller
 {
@@ -48,24 +50,16 @@ class SolutionController extends Controller
         );
     }
 
-    public function show(Solution $solution): View
+    public function show(Solution $solution): Response
     {
         if (!$solution->user()->exists()) {
             abort(404);
         }
 
-        $exercise = $solution->exercise;
-        $user = $solution->user;
-        $solutionsListForCurrentExercise = $solution->exercise
-            ->solutions()
-            ->where('user_id', $user->id)
-            ->get();
+        $page = SolutionShowPageData::fromExercise($solution->exercise, $solution->user);
 
-        return view('solution.show', [
-            'solutionsListForCurrentExercise' => $solutionsListForCurrentExercise,
-            'solution' => $solution,
-            'currentExercise' => $exercise,
-            'user' => $user,
-        ]);
+        // Имя компонента явное: User\SolutionController@show рендерит ту же страницу.
+        return $this->inertia($page->toArray(), 'Solution/Show')
+            ->withViewData(['robots' => 'noindex, nofollow', 'description' => $page->description()]);
     }
 }

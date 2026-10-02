@@ -135,6 +135,20 @@ declare namespace App {
                 github_name: string | null;
             };
         }
+        namespace Solution {
+            export type SolutionShowPageData = {
+                title: string;
+                exerciseTitle: string;
+                exerciseUrl: string;
+                userName: string;
+                userUrl: string;
+                versions: App.DTO.Solution.SolutionVersionData[];
+            };
+            export type SolutionVersionData = {
+                id: number;
+                content: string;
+            };
+        }
     }
     namespace Enums {
         export type CommentableType =
