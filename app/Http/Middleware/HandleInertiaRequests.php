@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\DTO\AuthUserData;
+use App\Support\Inertia\FlashBag;
 use App\Support\Navigation\NavigationBuilder;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
@@ -64,16 +65,8 @@ class HandleInertiaRequests extends Middleware
             // Для нативных <form method="post">: выход и dev-login уходят в Blade-территорию полной перезагрузкой.
             'csrfToken' => fn() => csrf_token(),
             'colorScheme' => fn() => $request->cookie('mantine-color-scheme') === 'dark' ? 'dark' : 'light',
-            'flash' => function () {
-                foreach (['success', 'error', 'warning', 'info'] as $level) {
-                    $message = session($level);
-                    if ($message) {
-                        return ['message' => $message, 'level' => $level];
-                    }
-                }
-
-                return null;
-            },
+            // ponytail: Inertia показывает одно сообщение, остальные теряются; массив — когда появятся экшены с несколькими
+            'flash' => fn() => app(FlashBag::class)->pull()[0] ?? null,
         ]);
     }
 }
