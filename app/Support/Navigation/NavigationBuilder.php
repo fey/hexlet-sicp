@@ -32,6 +32,7 @@ class NavigationBuilder
         'admin.comments.index',
         'admin.solutions.index',
         'solutions.index',
+        'my.solutions.index',
     ];
 
     public function __construct(private Request $request)

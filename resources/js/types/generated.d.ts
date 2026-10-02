@@ -140,6 +140,21 @@ declare namespace App {
                 solution_code: string;
             };
         }
+        namespace My {
+            export type SolutionListItemData = {
+                id: number;
+                exerciseTitle: string;
+                chapterPath: string;
+                showUrl: string;
+            };
+            export type SolutionListPageData = {
+                userName: string;
+                userUrl: string;
+                progressUrl: string;
+                items: App.DTO.My.SolutionListItemData[];
+                pagination: App.DTO.PaginationData;
+            };
+        }
         namespace Navigation {
             export type LocaleLinkData = {
                 code: string;
