@@ -56,6 +56,8 @@ class HandleInertiaRequests extends Middleware
                 'user' => fn() => $request->user() ? AuthUserData::fromModel($request->user()) : null,
             ],
             'locale' => app()->getLocale(),
+            // префикс относительных ключей useTView(), страница задаёт его в Controller::inertia()
+            'scope' => null,
             'translations' => fn() => array_combine(
                 self::TRANSLATION_GROUPS,
                 array_map(fn(string $group) => trans($group), self::TRANSLATION_GROUPS),
