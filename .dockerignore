@@ -7,4 +7,4 @@ storage/logs
 storage/app
 
 .composer-cache
-.npm-cache
+.pnpm-store

@@ -49,7 +49,7 @@ Hexlet SICP — трекер изучения книги SICP: пользова�
 - Testsuite четыре — `Unit`, `Feature`, `Exercises`, `Sandbox`; по умолчанию запускается `Feature`.
 - Racket (`raco`) нужен для `Exercises` и для `CheckControllerTest` в `Feature`. Локально его может не быть — тогда падают именно они, и это не регрессия: свои изменения проверять по остальным тестам.
 - `make start` (без Docker) поднимает приложение через **Heroku CLI** — `heroku local -f Procfile.dev`, а не `artisan serve`. Без установленного `heroku` работает только `make start-app` / `make start-frontend` или compose-цели.
-- `ViteException: Unable to locate file in Vite manifest` — не собран фронт: попросить пользователя запустить `npm run dev` (или `make start-frontend`).
+- `ViteException: Unable to locate file in Vite manifest` — не собран фронт: попросить пользователя запустить `pnpm dev` (или `make start-frontend`).
 - **`php artisan route:list` в этом проекте не работает вообще:** mcamara/laravel-localization перебивает биндинг команды своим `RouteTranslationsListCommand`, а тот в `handle()` читает необъявленный аргумент `locale` → `The "locale" argument does not exist`. Флаги не помогают, `route:trans:list` не зарегистрирован. Маршруты смотреть прямо в `routes/web.php` и `routes/api.php`.
 
 ## MCP

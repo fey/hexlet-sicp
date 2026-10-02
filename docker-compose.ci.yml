@@ -29,12 +29,12 @@ services:
       TEST_DB_PORT: 5432
       TEST_DB_DATABASE: hexlet_sicp_test
       TEST_DB_USERNAME: postgres
-      # Загрузочные кэши composer и npm внутри бинд-маунта, а не в $HOME
+      # Кэш composer и стор pnpm внутри бинд-маунта, а не в $HOME
       # контейнера — иначе их не видно с хоста и нечего отдавать
-      # actions/cache. node_modules кэшировать бессмысленно: npm ci
-      # удаляет его перед установкой.
+      # actions/cache. Заодно стор лежит на одной ФС с node_modules, и pnpm
+      # ставит пакеты хардлинками, а не копированием.
       COMPOSER_CACHE_DIR: /app/.composer-cache
-      npm_config_cache: /app/.npm-cache
+      pnpm_config_store_dir: /app/.pnpm-store
     command: ["make", "test-coverage", "analyse", "lint"]
 
   database:

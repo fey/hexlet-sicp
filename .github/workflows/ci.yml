@@ -39,15 +39,15 @@ jobs:
           restore-keys: |
             docker-
 
-      # Загрузочные кэши composer и npm. Кэш слоёв их не покрывает:
-      # composer install и npm ci выполняются в рантайме, а не при сборке образа.
+      # Загрузочные кэши composer и pnpm. Кэш слоёв их не покрывает:
+      # composer install и pnpm install выполняются в рантайме, а не при сборке образа.
       - name: Cache PHP and JS dependencies
         uses: actions/cache@v6
         with:
           path: |
             .composer-cache
-            .npm-cache
-          key: deps-${{ hashFiles('composer.lock', 'package-lock.json') }}
+            .pnpm-store
+          key: deps-${{ hashFiles('composer.lock', 'pnpm-lock.yaml') }}
           restore-keys: |
             deps-
 

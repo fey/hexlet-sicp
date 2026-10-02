@@ -10,13 +10,13 @@ deploy:
 	git push heroku main
 
 setup: env-prepare install key db-prepare ide-helper
-	npm run build
+	pnpm run build
 
 install-app:
 	composer install
 
 install-frontend:
-	npm ci
+	pnpm install --frozen-lockfile
 
 install: install-app install-frontend
 
@@ -27,7 +27,7 @@ start-app:
 	php artisan serve --host 0.0.0.0 --port ${PORT}
 
 start-frontend:
-	npm run dev
+	pnpm run dev
 
 db-prepare:
 	php artisan migrate:fresh --force --seed
@@ -36,7 +36,7 @@ lint: lint-js lint-php
 
 lint-fix:
 	composer exec phpcbf -v
-	npx prettier --write resources/**/*.blade.php
+	pnpm exec prettier --write resources/**/*.blade.php
 
 test:
 	php artisan test
@@ -89,16 +89,16 @@ ide-helper:
 	php artisan ide-helper:mod -n
 
 lint-js:
-	npm run lint-js
+	pnpm run lint-js
 
 lint-php:
 	composer exec phpcs -v
 
 lint-js-fix:
-	npm run lint-js-fix
+	pnpm run lint-js-fix
 
 setup-git-hooks:
-	npx simple-git-hooks
+	pnpm exec simple-git-hooks
 
 .PHONY: test
 
