@@ -130,7 +130,10 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   }, [flash])
 
   return (
-    <AppShell header={{ height: 60 }} navbar={{ width: 300, breakpoint: 'lg', collapsed: { desktop: true, mobile: !opened } }}>
+    <AppShell
+      header={{ height: 60 }}
+      navbar={{ width: 300, breakpoint: 'lg', collapsed: { desktop: true, mobile: !opened } }}
+    >
       <AppShell.Header>
         <Container size="xl" h="100%">
           <Group h="100%" justify="space-between" wrap="nowrap">
@@ -155,9 +158,11 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
       <AppShell.Navbar p="md">
         <Stack gap="sm">
-          {nav.main.flatMap((item) => (item.children.length > 0 ? item.children : [item])).map((item) => (
-            <NavAnchor key={item.href} item={item} c="dark" />
-          ))}
+          {nav.main
+            .flatMap((item) => (item.children.length > 0 ? item.children : [item]))
+            .map((item) => (
+              <NavAnchor key={item.href} item={item} c="dark" />
+            ))}
           {nav.user.map((item) => (
             <NavAnchor key={item.href} item={item} c="dark" />
           ))}

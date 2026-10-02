@@ -1,6 +1,8 @@
 # Миграция фронтенда на Inertia + Mantine + TypeScript
 
-Статус: решения приняты, реализация не начата. Дата фиксации — 2026-08-13.
+Статус: решения приняты 2026-08-13. Сделаны TypeScript и генерация типов, Inertia-корень на Mantine, `settings/profile` и `settings/account` (#2053); остальное — по порядку PR ниже.
+
+Этот документ — план и обоснования. Как писать код сейчас (перенос страницы, ссылки, мутации, shared props) — `docs/agents/frontend.md`; при расхождении верен он.
 
 Связанные ADR: [0001](adr/0001-frontend-strangler-migration.md) (strangler-миграция), [0002](adr/0002-no-ziggy-urls-from-backend.md) (URL с бэкенда), [0003](adr/0003-php-owns-translations.md) (переводы), [0004](adr/0004-ssr-deferred-seo-debt.md) (SSR и SEO-долг).
 
@@ -47,8 +49,8 @@ solution/index, solution/show
 
 `ujs.start()` вызывается в `resources/js/bootstrap.js:13`, который подключён только из `resources/views/layouts/app.blade.php`. На Inertia-страницах `@rails/ujs` нет, поэтому любая ссылка с `data-method` отработает как обычный GET **без ошибок в консоли** — тихий баг.
 
-- `logout` в Mantine-шапке — `router.post(logoutUrl)`, не `<Link>` и не `<a>`. Для этого в `NavItemData` есть поле `method`
-- деструктивные действия — `modals.openConfirmModal()` + `router.delete()`, а не `data-confirm`
+- `logout` и dev-login в Mantine-шапке — нативная `<form method="post">` с `csrfToken` (поле `method` в `NavItemData`). `router.post()` здесь не годится: после выхода бэкенд редиректит на Blade-страницу, и Inertia-запрос получает HTML вместо JSON
+- деструктивные действия — `modals.openConfirmModal()` + `router.delete()`, а не `data-confirm`; если после действия надо попасть на Blade-страницу, контроллер отвечает `Inertia::location()` (409 → полная перезагрузка)
 - оставшиеся `data-method` в Blade-территории (`chapter/show.blade.php:67-68`, `components/comment/_comment.blade.php:47`) не трогаем до фазы 2
 
 ### Никаких `window`/`document` на верхнем уровне модуля
@@ -167,7 +169,7 @@ solution/index, solution/show
 
 ### Шрифт
 
-`resources/sass/_variables.scss:2` объявляет `$font-family-sans-serif: 'Onest', sans-serif`, но ни `@font-face`, ни `<link>` на шрифт в проекте нет — сайт рендерится системным sans-serif, объявление декоративное. В Mantine-теме шрифт надо выбрать осознанно: либо реально подключить Onest (self-host в `public/fonts`), либо честный системный стек.
+`resources/sass/_variables.scss:2` объявляет `$font-family-sans-serif: 'Onest', sans-serif`, но ни `@font-face`, ни `<link>` на шрифт в проекте нет — сайт рендерится системным sans-serif, объявление декоративное. В Mantine-теме шрифт надо выбрать осознанно: либо реально подключить Onest (self-host в `public/fonts`), либо честный системный стек. Выбран системный стек (`resources/js/theme.ts`).
 
 ## Этап 0 — фундамент
 
@@ -179,8 +181,7 @@ solution/index, solution/show
 - **npm devDependencies:** `typescript`, `@types/react`, `@types/react-dom`, `postcss`, `postcss-preset-mantine`, `postcss-simple-vars`
 - **composer require-dev:** `spatie/laravel-typescript-transformer`. Именно dev: атрибут `#[TypeScript]` нужен только артизан-команде, прод-сборка с `--no-dev` не ломается
 - **Не добавлять:** `mantine-datatable`, `@mantine/form`, `@mantine/code-highlight` (в 8+ тянет `shiki` с WASM и асинхронной инициализацией — враждебен SSR; `highlight.js` уже в зависимостях, `<CodeBlock>` делается на `hljs.highlight()` как чистая функция)
-- Перед пиннингом проверить `npm view @mantine/core version`. Если 9.x ещё нет — 8.x, план не меняется
-- `.github/dependabot.yml`: в группе `ui` заменить `@mui/*`, `tailwind*`, `shadcn*` на `@mantine/*`, `@tabler/*` — иначе Mantine попадёт в группу `other-js` с 30 пакетами
+- Mantine 9
 
 ### Конфиги
 
@@ -312,8 +313,7 @@ lib/               scope.ts (useTView), format.ts
 
 - `assertInertia` на каждой перенесённой странице; `assertViewIs`/`assertViewHas` в `tests/Feature/Http/Controllers/Admin/**` исчезли
 - `make types-check` — `generated.d.ts` соответствует `app/DTO/**`
-- `grep -rn 'href="/' resources/js/pages resources/js/layouts` — пусто
-- `grep -rn 'window\.\|document\.' resources/js/{pages,layouts,components/ui,lib}` — только внутри обработчиков и эффектов
+- `make lint-frontend-rules` (входит в `make lint`): нет склеенных `href`, `data-method` и обращений к `window`/`document` на верхнем уровне модуля в `.ts`/`.tsx`
 
 ## Критерии готовности фазы 1
 

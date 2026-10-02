@@ -66,19 +66,6 @@ declare namespace App {
                 footer: App.DTO.Navigation.NavSectionData[];
             };
         }
-        namespace Progress {
-            export type ChapterProgressData = {
-                chapter: undefined;
-                hasChildren: boolean;
-                isCompleted: boolean;
-                childrenProgress: undefined | null;
-                exercisesProgress: undefined | null;
-            };
-            export type ExerciseProgressData = {
-                exercise: undefined;
-                exerciseMember: undefined | null;
-            };
-        }
         namespace Settings {
             export type AccountPageData = {
                 email: string;
