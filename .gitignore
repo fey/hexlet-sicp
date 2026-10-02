@@ -24,7 +24,7 @@ composer.phar
 .phpunit.cache
 
 .composer-cache
-.npm-cache
+.pnpm-store
 
 # Изолированные worktree, которые создают агенты (.claude/skills — симлинк, он отслеживается)
 .claude/worktrees/

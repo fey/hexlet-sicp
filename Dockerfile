@@ -9,15 +9,15 @@ COPY app/Helpers/helpers.php ./app/Helpers/helpers.php
 
 RUN composer install --prefer-dist --no-scripts --no-dev --no-autoloader
 
-COPY package.json package-lock.json ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
-RUN npm ci
+RUN pnpm install --frozen-lockfile
 
 COPY . .
 
 RUN composer dump-autoload --no-dev --optimize
 
-RUN npm run build
+RUN pnpm run build
 
 CMD ["bash", "-c", "make db-prepare start-app"]
 

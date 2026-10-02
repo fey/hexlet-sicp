@@ -56,7 +56,8 @@ RUN apt-get install -y \
     php${PHP_VERSION}-curl
 
 RUN curl -sL https://deb.nodesource.com/setup_${NODE_MAJOR}.x | bash -
-RUN apt-get install -y nodejs
+RUN apt-get install -y nodejs && npm install -g corepack && corepack enable pnpm
+ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 COPY ./xdebug.ini /etc/php/${PHP_VERSION}/cli/conf.d/99-xdebug-custom.ini
