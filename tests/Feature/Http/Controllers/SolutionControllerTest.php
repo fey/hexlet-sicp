@@ -7,6 +7,7 @@ use App\Models\Solution;
 use App\Models\User;
 use Database\Seeders\ChaptersTableSeeder;
 use Database\Seeders\ExercisesTableSeeder;
+use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Inertia\Testing\AssertableInertia as Assert;
 use Tests\ControllerTestCase;
@@ -23,7 +24,13 @@ class SolutionControllerTest extends ControllerTestCase
             ChaptersTableSeeder::class,
             ExercisesTableSeeder::class,
         ]);
-        $solutions = Solution::factory()->count(5)->create();
+        // Разные упражнения: versioned() схлопывает версии одной пары упражнение+автор,
+        // а случайный выбор фабрики иногда давал совпадение.
+        $exerciseIds = Exercise::orderBy('id')->limit(5)->pluck('id');
+        $solutions = Solution::factory()
+            ->count(5)
+            ->sequence(fn(Sequence $sequence) => ['exercise_id' => $exerciseIds[$sequence->index]])
+            ->create();
         $this->user->solutions()->saveMany($solutions);
 
         $this->exercise = Exercise::first();
@@ -34,9 +41,10 @@ class SolutionControllerTest extends ControllerTestCase
 
     public function testIndex(): void
     {
-        $latest = Solution::factory()->for($this->user)->create(['created_at' => now()->addMinute()]);
-        // Фабрика берёт случайное упражнение, а список схлопывает версии одной пары упражнение+автор.
-        $pairs = Solution::query()->select('exercise_id', 'user_id')->distinct()->get()->count();
+        $latest = Solution::factory()->for($this->user)->create([
+            'exercise_id' => Exercise::orderBy('id')->skip(5)->value('id'),
+            'created_at' => now()->addMinute(),
+        ]);
 
         $this->get(route('solutions.index'))
             ->assertOk()
@@ -44,7 +52,7 @@ class SolutionControllerTest extends ControllerTestCase
             ->assertDontSee('noindex', false)
             ->assertInertia(fn(Assert $page) => $page
                 ->component('Solution/Index')
-                ->where('pagination.total', $pairs)
+                ->where('pagination.total', 6)
                 ->where('filterUrl', route('solutions.index'))
                 ->where('filter', ['userName' => null, 'exerciseId' => null])
                 ->has('exercises', Exercise::count())
@@ -58,7 +66,7 @@ class SolutionControllerTest extends ControllerTestCase
                 ->where('tabs.1.href', route('solutions.index'))
                 ->where('tabs.1.active', true)
                 ->where('tabs.1.inertia', true)
-                ->has('items', $pairs)
+                ->has('items', 6)
                 ->has('items.0', fn(Assert $item) => $item
                     ->where('id', $latest->id)
                     ->where('userName', $this->user->name)
