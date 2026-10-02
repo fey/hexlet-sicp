@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Http\Controllers;
 
+use App\DTO\Activity\ActivityItemData;
 use App\Helpers\ChapterHelper;
 use App\Models\Activity;
 use App\Models\Comment;
@@ -60,6 +61,7 @@ class ActivityControllerTest extends ControllerTestCase
                     'label' => ChapterHelper::fullChapterName('1.1.2'),
                     'href' => ChapterHelper::getChapterOriginLinkForNumber('1.1.2'),
                 ])
+                ->where('items.2.description', __('activitylog.action_commented') . '.')
                 ->where('items.2.links.0', [
                     'label' => $comment->getCommentableName(),
                     'href' => $comment->present()->getLink(),
@@ -86,8 +88,18 @@ class ActivityControllerTest extends ControllerTestCase
         $this->get(route('log.index'))
             ->assertOk()
             ->assertInertia(fn(Assert $page) => $page
-                ->where('items.0.links.0.label', $this->exercise->path)
+                ->where('items.0.links.0.label', $this->exercise->getFullTitle())
                 ->etc());
+    }
+
+    public function testDescriptionUsesRussianPluralForms(): void
+    {
+        app()->setLocale('ru');
+        $activity = activity()
+            ->withProperties(['chapters' => ['1.1.1', '1.1.2', '1.1.3', '1.1.4', '1.1.5'], 'count' => 5])
+            ->log(ActivityService::ACTIVITY_CHAPTER_ADDED);
+
+        $this->assertSame('Добавил 5 глав', ActivityItemData::fromModel(Activity::find($activity->id))->description);
     }
 
     public function testQueryCountDoesNotDependOnItemCount(): void
