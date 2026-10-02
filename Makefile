@@ -97,8 +97,9 @@ lint-ts:
 generate-types:
 	php artisan typescript:transform
 
+# safe.directory: в CI checkout принадлежит раннеру, а контейнер работает под другим uid
 types-check: generate-types
-	git diff --exit-code -- resources/js/types/generated.d.ts
+	git -c safe.directory=$(CURDIR) diff --exit-code -- resources/js/types/generated.d.ts
 
 lint-php:
 	composer exec phpcs -v
