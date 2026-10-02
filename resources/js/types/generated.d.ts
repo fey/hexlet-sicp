@@ -48,10 +48,27 @@ declare namespace App {
             export type ExportData = {
                 type: string;
             };
+            export type ExportPageData = {
+                types: App.DTO.Admin.ExportTypeData[];
+                storeUrl: string;
+                menu: App.DTO.Navigation.NavItemData[];
+            };
+            export type ExportTypeData = {
+                value: string;
+                label: string;
+            };
             export type UpdateUserData = {
                 name: string;
                 github_name: string | null;
                 is_admin: boolean | null;
+            };
+            export type UserEditPageData = {
+                name: string;
+                githubName: string | null;
+                isAdmin: boolean;
+                updateUrl: string;
+                cancelUrl: string;
+                menu: App.DTO.Navigation.NavItemData[];
             };
             export type UserFilterData = {
                 name: string | null;
