@@ -190,6 +190,9 @@ importers:
       '@codemirror/view':
         specifier: ^6.43.8
         version: 6.43.12
+      '@inertiajs/core':
+        specifier: ^3.7.1
+        version: 3.7.1(axios@1.20.0(debug@4.4.3(supports-color@7.2.0))(supports-color@7.2.0))
       '@inertiajs/react':
         specifier: ^3.6.1
         version: 3.7.1(axios@1.20.0(debug@4.4.3(supports-color@7.2.0))(supports-color@7.2.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
