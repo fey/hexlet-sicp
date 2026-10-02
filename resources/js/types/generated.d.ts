@@ -132,6 +132,31 @@ declare namespace App {
                 footer: App.DTO.Navigation.NavSectionData[];
             };
         }
+        namespace Progress {
+            export type ChapterNodeData = {
+                id: number;
+                title: string;
+                url: string;
+                isCompleted: boolean;
+                completedChildrenCount: number;
+                totalChildrenCount: number;
+                children: App.DTO.Progress.ChapterNodeData[];
+                exercises: App.DTO.Progress.ExerciseNodeData[];
+            };
+            export type ExerciseNodeData = {
+                id: number;
+                title: string;
+                url: string;
+                isCompleted: boolean;
+                isInProgress: boolean;
+            };
+            export type MyProgressPageData = {
+                userName: string;
+                userUrl: string;
+                solutionsUrl: string;
+                chapters: App.DTO.Progress.ChapterNodeData[];
+            };
+        }
         namespace Settings {
             export type AccountPageData = {
                 email: string;

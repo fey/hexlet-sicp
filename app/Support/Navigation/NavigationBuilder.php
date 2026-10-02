@@ -28,6 +28,7 @@ class NavigationBuilder
         'users.solutions.show',
         'admin.users.edit',
         'admin.export.index',
+        'my.show',
     ];
 
     public function __construct(private Request $request)
