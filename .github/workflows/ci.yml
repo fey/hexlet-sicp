@@ -77,6 +77,10 @@ jobs:
           # Каталог создаём заранее: watch начинает индексировать сразу, а
           # контейнер напишет туда первые файлы только через минуту.
           mkdir -p "$ALLURE_RESULTS"
+          # Контейнер работает под uid владельца checkout'а — иначе git внутри
+          # отказывается работать с репозиторием («dubious ownership»).
+          # UID в bash есть, но не экспортируется; docker-compose.ci.yml берёт его как build-arg.
+          export UID
           if [ "$UPLOAD_TO_TESTOPS" = "true" ]; then
             allurectl watch \
               --launch-name "main #${{ github.run_number }} $(git rev-parse --short HEAD)" \
