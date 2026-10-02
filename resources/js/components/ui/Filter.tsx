@@ -1,11 +1,13 @@
 import { Link, useForm } from '@inertiajs/react'
-import { ActionIcon, Group, TextInput } from '@mantine/core'
+import { ActionIcon, Group, Select, TextInput } from '@mantine/core'
 import { IconSearch, IconX } from '@tabler/icons-react'
 import { useTranslation } from 'react-i18next'
 
 type Field = {
   name: string
   placeholder: string
+  // С options поле — выпадающий список с поиском по подписи.
+  options?: App.DTO.SelectOptionData[]
 }
 
 type Props = {
@@ -29,17 +31,35 @@ export function Filter({ action, fields, values }: Props) {
   return (
     <form onSubmit={submit}>
       <Group mb="md" wrap="nowrap" align="flex-end">
-        {fields.map((field) => (
-          <TextInput
-            key={field.name}
-            flex={1}
-            name={`filter[${field.name}]`}
-            aria-label={field.placeholder}
-            placeholder={field.placeholder}
-            value={form.data.filter[field.name]}
-            onChange={(event) => form.setData('filter', { ...form.data.filter, [field.name]: event.target.value })}
-          />
-        ))}
+        {fields.map((field) => {
+          const props = {
+            flex: 1,
+            name: `filter[${field.name}]`,
+            'aria-label': field.placeholder,
+            placeholder: field.placeholder,
+          }
+          const setValue = (value: string | null) =>
+            form.setData('filter', { ...form.data.filter, [field.name]: value ?? '' })
+
+          return field.options ? (
+            <Select
+              key={field.name}
+              {...props}
+              data={field.options}
+              value={form.data.filter[field.name] || null}
+              onChange={setValue}
+              searchable
+              clearable
+            />
+          ) : (
+            <TextInput
+              key={field.name}
+              {...props}
+              value={form.data.filter[field.name]}
+              onChange={(event) => setValue(event.target.value)}
+            />
+          )
+        })}
         <ActionIcon type="submit" size="lg" aria-label={t('layout.common.search')} loading={form.processing}>
           <IconSearch size={18} />
         </ActionIcon>

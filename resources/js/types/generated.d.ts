@@ -26,6 +26,10 @@ declare namespace App {
             label: string;
             active: boolean;
         };
+        export type SelectOptionData = {
+            value: string;
+            label: string;
+        };
         namespace Activity {
             export type ActivityItemData = {
                 id: number;
@@ -133,6 +137,30 @@ declare namespace App {
             export type ProfileUpdateData = {
                 name: string;
                 github_name: string | null;
+            };
+        }
+        namespace Solution {
+            export type SolutionFilterData = {
+                userName: string | null;
+                exerciseId: string | null;
+            };
+            export type SolutionListItemData = {
+                id: number;
+                userName: string;
+                userUrl: string;
+                userAvatarUrl: string;
+                exerciseTitle: string;
+                exerciseUrl: string;
+                createdAt: string;
+                showUrl: string;
+            };
+            export type SolutionListPageData = {
+                items: App.DTO.Solution.SolutionListItemData[];
+                pagination: App.DTO.PaginationData;
+                filter: App.DTO.Solution.SolutionFilterData;
+                filterUrl: string;
+                exercises: App.DTO.SelectOptionData[];
+                tabs: App.DTO.Navigation.NavItemData[];
             };
         }
     }

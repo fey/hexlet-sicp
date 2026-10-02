@@ -24,6 +24,7 @@ class NavigationBuilder
         'settings.account.index',
         'log.index',
         'admin.users.index',
+        'solutions.index',
     ];
 
     public function __construct(private Request $request)
@@ -77,6 +78,19 @@ class NavigationBuilder
             $this->route('admin.comments.title', 'admin.comments.index', 'messages', $filter),
             $this->route('admin.solutions.title', 'admin.solutions.index', 'code', $filter),
             $this->route('admin.export.title', 'admin.export.index', 'download', $filter),
+        ];
+    }
+
+    /**
+     * Вкладки «Упражнения / Решения». Blade-версия — exercise/navigation.blade.php, её ещё рендерит exercise/index.
+     *
+     * @return array<int, NavItemData>
+     */
+    public function exercises(): array
+    {
+        return [
+            $this->route('layout.nav.exercises', 'exercises.index'),
+            $this->route('views.solution.index.header.h1', 'solutions.index'),
         ];
     }
 
