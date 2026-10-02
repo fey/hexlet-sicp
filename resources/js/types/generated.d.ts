@@ -66,7 +66,7 @@ declare namespace App {
                 showUrl: string;
                 editUrl: string;
             };
-            export type UsersPageData = {
+            export type UserListPageData = {
                 items: App.DTO.Admin.UserListItemData[];
                 pagination: App.DTO.PaginationData;
                 filter: App.DTO.Admin.UserFilterData;

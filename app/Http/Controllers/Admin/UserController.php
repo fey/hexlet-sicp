@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\DTO\Admin\UpdateUserData;
 use App\DTO\Admin\UserFilterData;
 use App\DTO\Admin\UserListItemData;
-use App\DTO\Admin\UsersPageData;
+use App\DTO\Admin\UserListPageData;
 use App\DTO\PaginationData;
 use App\Models\User;
 use App\Support\Navigation\NavigationBuilder;
@@ -28,12 +28,13 @@ class UserController extends AdminController
             ->paginate(50)
             ->withQueryString();
 
-        $page = new UsersPageData(
+        $page = new UserListPageData(
             items: array_map(UserListItemData::fromModel(...), $users->items()),
             pagination: PaginationData::fromPaginator($users),
+            // ?filter[name][]=… QueryBuilder принимает, а строковое поле DTO — нет.
             filter: new UserFilterData(
-                name: $request->input('filter.name'),
-                email: $request->input('filter.email'),
+                name: is_string($request->input('filter.name')) ? $request->input('filter.name') : null,
+                email: is_string($request->input('filter.email')) ? $request->input('filter.email') : null,
             ),
             filterUrl: route('admin.users.index'),
             menu: $navigation->admin($request->only('filter')),

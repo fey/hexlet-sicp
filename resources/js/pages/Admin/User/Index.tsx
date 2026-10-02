@@ -9,7 +9,7 @@ import AdminLayout from '@/layouts/AdminLayout'
 
 type User = App.DTO.Admin.UserListItemData
 
-export default function AdminUserIndex({ items, pagination, filter, filterUrl, menu }: App.DTO.Admin.UsersPageData) {
+export default function AdminUserIndex({ items, pagination, filter, filterUrl, menu }: App.DTO.Admin.UserListPageData) {
   const { t } = useTranslation()
 
   // Профиль и редактирование пользователя ещё на Blade — обычные ссылки, не <Link>.
@@ -49,7 +49,13 @@ export default function AdminUserIndex({ items, pagination, filter, filterUrl, m
     {
       label: t('admin.users.table.actions'),
       render: (user) => (
-        <ActionIcon component="a" href={user.editUrl} variant="outline" aria-label={t('admin.users.edit')}>
+        <ActionIcon
+          component="a"
+          href={user.editUrl}
+          variant="outline"
+          aria-label={t('admin.users.edit')}
+          title={t('admin.users.edit')}
+        >
           <IconPencil size={16} />
         </ActionIcon>
       ),

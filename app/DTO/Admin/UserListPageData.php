@@ -6,7 +6,7 @@ use App\DTO\Navigation\NavItemData;
 use App\DTO\PaginationData;
 use Spatie\LaravelData\Data;
 
-class UsersPageData extends Data
+class UserListPageData extends Data
 {
     /**
      * @param array<int, UserListItemData> $items

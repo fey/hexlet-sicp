@@ -60,6 +60,15 @@ class UserControllerTest extends ControllerTestCase
                 ->etc());
     }
 
+    public function testIndexIgnoresArrayFilterInForm(): void
+    {
+        $this->actingAs($this->adminUser);
+
+        $this->get(route('admin.users.index', ['filter' => ['name' => ['x']]]))
+            ->assertOk()
+            ->assertInertia(fn(Assert $page) => $page->where('filter.name', null)->etc());
+    }
+
     public function testPaginationKeepsFilter(): void
     {
         $this->actingAs($this->adminUser);
@@ -68,6 +77,7 @@ class UserControllerTest extends ControllerTestCase
 
         $this->get(route('admin.users.index', $filter))
             ->assertInertia(fn(Assert $page) => $page
+                ->where('pagination.total', 51)
                 ->where('pagination.lastPage', 2)
                 ->where('pagination.links.2.url', route('admin.users.index', [...$filter, 'page' => 2]))
                 ->etc());

@@ -1,7 +1,7 @@
-import { IconCode, IconDownload, IconMessages, IconShieldLock, type IconUser, IconUsers } from '@tabler/icons-react'
+import { IconCode, IconDownload, IconMessages, IconShieldLock, IconUsers, type TablerIcon } from '@tabler/icons-react'
 
 // Имя иконки приходит с бэкенда в NavItemData::$icon.
-const icons: Record<string, typeof IconUser> = {
+const icons: Record<string, TablerIcon> = {
   'shield-lock': IconShieldLock,
   users: IconUsers,
   messages: IconMessages,
