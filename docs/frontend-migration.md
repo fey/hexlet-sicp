@@ -190,9 +190,9 @@ solution/index, solution/show
 | `jsconfig.json` | **удалить** — второй источник истины по алиасам |
 | `postcss.config.cjs` | новый. `postcss-preset-mantine` + `postcss-simple-vars` с брейкпоинтами |
 | `vite.config.js` | подключить `@vitejs/plugin-react()` (стоит в devDeps, но не в `plugins`); **убрать блок `esbuild: { jsx, jsxImportSource }`** — теперь это делает плагин, заодно появляется Fast Refresh; вход `app.jsx` → `app.tsx`; остальные 4 входа и `app.scss` без изменений |
-| `config/typescript-transformer.php` | новый. `auto_discover_types: [app_path('DTO')]`, `DataTypeScriptTransformer` + `EnumTransformer`, `writer: TypeDefinitionWriter`, `output_file: resources/js/types/generated.d.ts` |
+| `app/Providers/TypeScriptTransformerServiceProvider.php` | новый (пакет v3 настраивается провайдером, а не `config/`). `LaravelDataTypeScriptTransformerExtension` + `EnumTransformer`, каталоги `app/DTO` и `app/Enums`, `GlobalNamespaceWriter` в `resources/js/types/generated.d.ts`. Пакет в require-dev, поэтому провайдер регистрируется из `AppServiceProvider` только при наличии пакета |
 | `biome.json` | исключить `resources/js/types/generated.d.ts` |
-| `Makefile` | `lint-ts: npm run types` (`tsc --noEmit`); `lint: lint-js lint-ts lint-php`; `generate-types: php artisan typescript:transform --format`; `types-check: generate-types` + `git diff --exit-code` на сгенерированный файл, добавить в `lint`; в `setup` добавить `generate-types` перед `npm run build` |
+| `Makefile` | `lint-ts: npm run types` (`tsc --noEmit`); `lint: lint-js lint-ts lint-php`; `generate-types: php artisan typescript:transform` (форматирование задано в провайдере); `types-check: generate-types` + `git diff --exit-code` на сгенерированный файл, добавить в `lint`; в `setup` добавить `generate-types` перед `npm run build` |
 
 `docker-compose.ci.yml` уже гоняет `make ... lint`, так что `tsc` попадает в CI автоматически. `pre-push` вызывает `make pre-push-hook` → `lint analyse`, править хук не надо.
 

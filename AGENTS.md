@@ -44,7 +44,7 @@ Hexlet SICP — трекер изучения книги SICP: пользова�
 Всё запускается через Makefile; `make-compose.mk` — то же самое под Docker, с префиксом `compose-`. Список целей смотри в самих файлах — здесь только то, чего в них не видно:
 
 - `make cache-clear` — лечит `CSRF token mismatch`.
-- `make lint` = `lint-js lint-php`. Форматирование blade не проверяется нигде: `lint-fix` его только переписывает.
+- `make lint` = `lint-js lint-ts types-check lint-php`. `types-check` перегенерирует `resources/js/types/generated.d.ts` из `app/DTO` и `app/Enums` и падает на диффе: поменял DTO — запусти `make generate-types` и закоммить файл. Форматирование blade не проверяется нигде: `lint-fix` его только переписывает.
 - `make lint-fix` чинит PHP (phpcbf) и blade (prettier), но не JS. Автофикс Biome — отдельная цель `make lint-js-fix`.
 - `make analyse` — заглушка (`@echo 'fixme'`, вызов phpstan закомментирован). Поэтому pre-push-хук и CI фактически гоняют только lint и тесты.
 - Testsuite четыре — `Unit`, `Feature`, `Exercises`, `Sandbox`; по умолчанию запускается `Feature`.
