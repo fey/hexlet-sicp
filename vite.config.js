@@ -26,7 +26,7 @@ export default defineConfig({
   plugins: [
     laravel({
       input: [
-        'resources/js/app.jsx',
+        'resources/js/app.tsx',
         'resources/js/bootstrap.js',
         'resources/js/custom.js',
         'resources/js/hljs.js',

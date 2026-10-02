@@ -1,5 +1,10 @@
 declare namespace App {
     namespace DTO {
+        export type AuthUserData = {
+            id: number;
+            name: string;
+            isAdmin: boolean;
+        };
         export type CheckResultData = {
             exitCode: number;
             output: string;
@@ -30,6 +35,37 @@ declare namespace App {
                 solution_code: string;
             };
         }
+        namespace Navigation {
+            export type LocaleLinkData = {
+                code: string;
+                label: string;
+                flagUrl: string;
+                href: string;
+            };
+            export type NavItemData = {
+                label: string;
+                href: string;
+                active: boolean;
+                inertia: boolean;
+                method: string | null;
+                icon: string | null;
+                children: App.DTO.Navigation.NavItemData[];
+            };
+            export type NavSectionData = {
+                title: string | null;
+                items: App.DTO.Navigation.NavItemData[];
+            };
+            export type NavigationData = {
+                homeUrl: string;
+                logoUrl: string;
+                logoAlt: string;
+                main: App.DTO.Navigation.NavItemData[];
+                user: App.DTO.Navigation.NavItemData[];
+                currentLocale: App.DTO.Navigation.LocaleLinkData;
+                otherLocales: App.DTO.Navigation.LocaleLinkData[];
+                footer: App.DTO.Navigation.NavSectionData[];
+            };
+        }
         namespace Progress {
             export type ChapterProgressData = {
                 chapter: undefined;
@@ -44,6 +80,14 @@ declare namespace App {
             };
         }
         namespace Settings {
+            export type ProfilePageData = {
+                name: string;
+                email: string;
+                github_name: string | null;
+                profileImage: string;
+                updateUrl: string;
+                menu: App.DTO.Navigation.NavItemData[];
+            };
             export type ProfileUpdateData = {
                 name: string;
                 github_name: string | null;
