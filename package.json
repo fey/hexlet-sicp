@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "scripts": {
         "heroku-postbuild": "npm run build",
-        "lint-js": "biome lint ./resources/js",
+        "lint-js": "biome lint ./resources/js && biome format ./resources/js",
         "lint-js-fix": "biome check --write ./resources/js",
         "dev": "vite",
         "build": "vite build",

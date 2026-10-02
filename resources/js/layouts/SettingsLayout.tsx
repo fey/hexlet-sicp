@@ -21,7 +21,14 @@ export default function SettingsLayout({ menu, children }: Props) {
             </Text>
             {menu.map((item) =>
               item.inertia ? (
-                <NavLink key={item.href} component={Link} href={item.href} label={item.label} active={item.active} variant="filled" />
+                <NavLink
+                  key={item.href}
+                  component={Link}
+                  href={item.href}
+                  label={item.label}
+                  active={item.active}
+                  variant="filled"
+                />
               ) : (
                 <NavLink key={item.href} href={item.href} label={item.label} active={item.active} variant="filled" />
               ),

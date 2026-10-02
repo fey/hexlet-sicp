@@ -32,7 +32,7 @@ start-frontend:
 db-prepare:
 	php artisan migrate:fresh --force --seed
 
-lint: lint-js lint-ts types-check lint-php
+lint: lint-js lint-ts lint-frontend-rules types-check lint-php
 
 lint-fix:
 	composer exec phpcbf -v
@@ -91,15 +91,24 @@ ide-helper:
 lint-js:
 	npm run lint-js
 
+# Правила hybrid-периода (docs/agents/frontend.md), только для нового TS-кода:
+# URL приходят с бэкенда; data-method без @rails/ujs уходит GET-ом; window/document на верхнем уровне ломают SSR.
+lint-frontend-rules:
+	@! grep -rnE --include='*.ts' --include='*.tsx' "href=(\"/|\{['\"\`]/)" resources/js \
+		|| (echo 'URL склеен в JS — передай его пропом с бэкенда'; exit 1)
+	@! grep -rnE --include='*.tsx' 'data-(method|confirm)=' resources/js \
+		|| (echo 'data-method/data-confirm не работают на Inertia-странице — router.* и modals.openConfirmModal()'; exit 1)
+	@! grep -rnE --include='*.ts' --include='*.tsx' '^[^ /*].*\b(window|document|localStorage)\.' resources/js \
+		|| (echo 'window/document на верхнем уровне модуля — перенеси в useEffect или обработчик'; exit 1)
+
 lint-ts:
 	npm run types
 
 generate-types:
 	php artisan typescript:transform
 
-# safe.directory: в CI checkout принадлежит раннеру, а контейнер работает под другим uid
 types-check: generate-types
-	git -c safe.directory=$(CURDIR) diff --exit-code -- resources/js/types/generated.d.ts
+	git diff --exit-code -- resources/js/types/generated.d.ts
 
 lint-php:
 	composer exec phpcs -v
