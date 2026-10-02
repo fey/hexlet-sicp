@@ -18,7 +18,16 @@ class HandleInertiaRequests extends Middleware
     protected $rootView = 'app';
 
     /** Группы PHP-словарей, которые получает фронтенд (ADR 0003). */
-    private const array TRANSLATION_GROUPS = ['layout', 'account', 'settings', 'activitylog', 'admin', 'solution', 'progresses'];
+    private const array TRANSLATION_GROUPS = [
+        'layout',
+        'account',
+        'settings',
+        'activitylog',
+        'admin',
+        'solution',
+        'progresses',
+        'views',
+    ];
 
     /**
      * Determines the current asset version.
