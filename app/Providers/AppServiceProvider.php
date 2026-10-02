@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Event;
 use SocialiteProviders\Manager\SocialiteWasCalled;
 use SocialiteProviders\Yandex\Provider as YandexProvider;
+use Spatie\LaravelTypeScriptTransformer\TypeScriptTransformerApplicationServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -38,6 +39,10 @@ class AppServiceProvider extends ServiceProvider
 
             return $githubClient;
         });
+
+        if (class_exists(TypeScriptTransformerApplicationServiceProvider::class)) {
+            $this->app->register(TypeScriptTransformerServiceProvider::class);
+        }
 
         if (config('logging.log_sql_queries')) {
             DB::listen(function ($query): void {

@@ -9,7 +9,7 @@ console:
 deploy:
 	git push heroku main
 
-setup: env-prepare install key db-prepare ide-helper
+setup: env-prepare install key db-prepare ide-helper generate-types
 	npm run build
 
 install-app:
@@ -32,7 +32,7 @@ start-frontend:
 db-prepare:
 	php artisan migrate:fresh --force --seed
 
-lint: lint-js lint-php
+lint: lint-js lint-ts types-check lint-php
 
 lint-fix:
 	composer exec phpcbf -v
@@ -90,6 +90,15 @@ ide-helper:
 
 lint-js:
 	npm run lint-js
+
+lint-ts:
+	npm run types
+
+generate-types:
+	php artisan typescript:transform
+
+types-check: generate-types
+	git diff --exit-code -- resources/js/types/generated.d.ts
 
 lint-php:
 	composer exec phpcs -v

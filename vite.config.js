@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
+import react from '@vitejs/plugin-react';
 import path from 'path';
 
 export default defineConfig({
@@ -13,10 +14,6 @@ export default defineConfig({
     hmr: {
       host: 'localhost',
     },
-  },
-  esbuild: {
-    jsx: 'automatic',
-    jsxImportSource: 'react',
   },
   css: {
     preprocessorOptions: {
@@ -38,5 +35,6 @@ export default defineConfig({
       ],
       refresh: true,
     }),
+    react(),
   ],
 });

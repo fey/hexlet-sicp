@@ -7,6 +7,7 @@
 
     <title>{{ config('app.name', 'Hexlet SICP') }}</title>
 
+    @viteReactRefresh
     @vite(['resources/js/app.jsx', 'resources/sass/app.scss'])
     @inertiaHead
 </head>
