@@ -4,7 +4,7 @@
 
 ## Project
 
-Hexlet SICP — трекер изучения книги SICP: пользователи читают главы (иерархическое дерево), решают упражнения на Scheme/Racket, набирают баллы и попадают в лидерборды. БД — PostgreSQL везде: локально, в тестах и в проде. Фронтенд — **hybrid**: часть страниц на Blade, часть уже на Inertia + React.
+Hexlet SICP — трекер изучения книги SICP: пользователи читают главы (иерархическое дерево), решают упражнения на Scheme/Racket, набирают баллы и попадают в лидерборды. БД — PostgreSQL везде: локально, в тестах и в проде. Фронтенд — **hybrid**: часть страниц на Blade, часть уже на Inertia + Mantine (TSX).
 
 ## Stack (версии)
 
@@ -29,7 +29,7 @@ Hexlet SICP — трекер изучения книги SICP: пользова�
 
 - **Issue, PR, триаж, метки** → `docs/agents/issue-tracker.md` и `docs/agents/triage-labels.md`.
 - **ADR и конфликт с принятым решением** → `docs/agents/domain.md`. Глоссарий — `CONTEXT.md` в корне; доменные модели — раздел «Домен (app/Models)» ниже.
-- **Фронтенд, миграция на Inertia** → `docs/frontend-migration.md` и `docs/adr/0001`–`0004`.
+- **Фронтенд: `resources/js/**`, Inertia-страница, перенос страницы с Blade, ссылки и мутации, shared props** → `docs/agents/frontend.md`. План миграции и обоснования — `docs/frontend-migration.md` и `docs/adr/0001`–`0004`.
 
 Скиллы активировать сразу, как зашёл в область, а не когда застрял:
 
@@ -86,18 +86,6 @@ Hexlet SICP — трекер изучения книги SICP: пользова�
 - `app/Services/SolutionChecker.php` исполняет `raco test` (Racket) в шелле, оборачивая код+тесты в sandbox-шаблон; временные файлы — в `storage/solutions/`.
 - `app/Services/ExerciseService.php` оркестрирует `check()` (валидация → лог активности → переход в finished + баллы) и `createSolution()`.
 - API: `POST /api/exercises/{id}/check`, `POST /api/exercises/{id}/solutions`, `GET /api/exercises/{id}`.
-
-### Фронтенд (hybrid Blade + Inertia/React)
-
-Приложение переезжает на Inertia + Mantine постранично (**strangler**, ADR 0001), поэтому Blade и Inertia сосуществуют — и все правила ниже следуют из этого. Inertia-страницы пишутся на TSX + Mantine (`resources/js/app.tsx`, лейаут `layouts/AppLayout.tsx`); пропы типизируются выходными DTO из `app/DTO` через `generated.d.ts`. Переехали `settings/profile` и `settings/account`.
-
-Правила hybrid-периода:
-
-- **URL приходят с бэкенда** — из пропов, DTO, `links[]` пагинатора. Маршруты живут под **локаль-префиксом** (`/{locale}/...` в `routes/web.php`), а собранный в JS путь этот префикс теряет и молча переключает локаль сессии. Ziggy не используется (ADR 0002). Существующий долг: склейка в `components/ControlBox.jsx`.
-- **`<Link>` — на Inertia-маршрут, `<a href>` — на Blade-страницу** (в Mantine: `component="a"`). `<Link>` ждёт JSON с заголовком `X-Inertia`, а Blade отдаёт HTML.
-- **Мутации на Inertia-странице — через `router.post()` / `router.delete()`.** `data-method` работает только в Blade-слое: `@rails/ujs` грузится из `layouts/app.blade.php`. На Inertia-странице такая ссылка тихо отработает как GET, без ошибок в консоли. POST, после которого бэкенд редиректит на Blade-страницу (выход, dev-login), — нативной формой с `csrfToken` из shared props (`components/ui/NavAnchor.tsx`): Inertia-запрос получил бы HTML вместо JSON.
-- **Переводы заводятся в `resources/lang/{en,ru}`, а не в словарях i18next** — PHP остаётся единственным источником (ADR 0003), фронтенд их только потребляет.
-- **`window` / `document` / `localStorage` — внутри `useEffect` и обработчиков**, а не на верхнем уровне модуля: фаза 2 включает SSR (ADR 0004). Даты форматируются на бэкенде в DTO, респонсив — средствами Mantine (`visibleFrom` / `hiddenFrom`).
 
 ### Тесты
 
