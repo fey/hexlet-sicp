@@ -31,11 +31,7 @@ class UserController extends AdminController
         $page = new UserListPageData(
             items: array_map(UserListItemData::fromModel(...), $users->items()),
             pagination: PaginationData::fromPaginator($users),
-            // ?filter[name][]=… QueryBuilder принимает, а строковое поле DTO — нет.
-            filter: new UserFilterData(
-                name: is_string($request->input('filter.name')) ? $request->input('filter.name') : null,
-                email: is_string($request->input('filter.email')) ? $request->input('filter.email') : null,
-            ),
+            filter: UserFilterData::fromQuery($request),
             filterUrl: route('admin.users.index'),
             menu: $navigation->admin($request->only('filter')),
         );

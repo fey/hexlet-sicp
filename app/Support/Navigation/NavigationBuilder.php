@@ -24,6 +24,8 @@ class NavigationBuilder
         'settings.account.index',
         'log.index',
         'admin.users.index',
+        'admin.comments.index',
+        'admin.solutions.index',
     ];
 
     public function __construct(private Request $request)
