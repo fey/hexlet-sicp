@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Settings;
 
+use App\DTO\Settings\ProfilePageData;
 use App\DTO\Settings\ProfileUpdateData;
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use App\Support\Navigation\NavigationBuilder;
 use Auth;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Response;
@@ -16,14 +18,22 @@ class ProfileController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(): Response
+    public function index(NavigationBuilder $navigation): Response
     {
-        $user = auth()->user();
+        /** @var User $user */
+        $user = Auth::user();
 
-        return $this->inertia([
-            'user' => $user,
-            'profileImage' => $user->present()->getProfileImageLink(),
-        ]);
+        $page = new ProfilePageData(
+            name: $user->name,
+            email: $user->email,
+            github_name: $user->github_name,
+            profileImage: $user->present()->getProfileImageLink(),
+            updateUrl: route('settings.profile.update', $user),
+            menu: $navigation->settings(),
+        );
+
+        return $this->inertia($page->toArray())
+            ->withViewData(['robots' => 'noindex, nofollow']);
     }
 
     public function update(ProfileUpdateData $data): RedirectResponse

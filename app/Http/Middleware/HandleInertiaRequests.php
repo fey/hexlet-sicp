@@ -2,6 +2,8 @@
 
 namespace App\Http\Middleware;
 
+use App\DTO\AuthUserData;
+use App\Support\Navigation\NavigationBuilder;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -14,6 +16,9 @@ class HandleInertiaRequests extends Middleware
      * @var string
      */
     protected $rootView = 'app';
+
+    /** Группы PHP-словарей, которые получает фронтенд (ADR 0003). */
+    private const array TRANSLATION_GROUPS = ['layout', 'account', 'settings'];
 
     /**
      * Determines the current asset version.
@@ -38,9 +43,18 @@ class HandleInertiaRequests extends Middleware
     {
         return array_merge(parent::share($request), [
             'auth' => [
-                'user' => $request->user(),
+                'user' => fn() => $request->user() ? AuthUserData::fromModel($request->user()) : null,
             ],
             'locale' => app()->getLocale(),
+            'translations' => fn() => array_combine(
+                self::TRANSLATION_GROUPS,
+                array_map(fn(string $group) => trans($group), self::TRANSLATION_GROUPS),
+            ),
+            'nav' => fn() => app(NavigationBuilder::class)->build(),
+            // Схема ставится с сервера атрибутом на <html>, без inline-скрипта. Переключателя пока нет.
+            // Для нативных <form method="post">: выход и dev-login уходят в Blade-территорию полной перезагрузкой.
+            'csrfToken' => fn() => csrf_token(),
+            'colorScheme' => fn() => $request->cookie('mantine-color-scheme') === 'dark' ? 'dark' : 'light',
             'flash' => function () {
                 foreach (['success', 'error', 'warning', 'info'] as $level) {
                     $message = session($level);

@@ -11,5 +11,8 @@ class EncryptCookies extends Middleware
      *
      * @var array
      */
-    protected $except = [];
+    protected $except = [
+        // Кука ставится и читается на клиенте, шифровать её нельзя.
+        'mantine-color-scheme',
+    ];
 }
