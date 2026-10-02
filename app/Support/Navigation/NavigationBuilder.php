@@ -22,6 +22,7 @@ class NavigationBuilder
     private const array INERTIA_ROUTES = [
         'settings.profile.index',
         'settings.account.index',
+        'log.index',
     ];
 
     public function __construct(private Request $request)

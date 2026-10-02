@@ -15,6 +15,35 @@ declare namespace App {
             content: string;
             parent_id?: number | null;
         };
+        export type PaginationData = {
+            currentPage: number;
+            lastPage: number;
+            total: number;
+            links: App.DTO.PaginationLinkData[];
+        };
+        export type PaginationLinkData = {
+            url: string | null;
+            label: string;
+            active: boolean;
+        };
+        namespace Activity {
+            export type ActivityItemData = {
+                id: number;
+                causerName: string | null;
+                causerUrl: string | null;
+                description: string;
+                links: App.DTO.Activity.ActivityLinkData[];
+                createdAt: string;
+            };
+            export type ActivityLinkData = {
+                label: string;
+                href: string | null;
+            };
+            export type ActivityPageData = {
+                items: App.DTO.Activity.ActivityItemData[];
+                pagination: App.DTO.PaginationData;
+            };
+        }
         namespace Admin {
             export type ExportData = {
                 type: string;
