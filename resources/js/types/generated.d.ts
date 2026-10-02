@@ -45,6 +45,23 @@ declare namespace App {
             };
         }
         namespace Admin {
+            export type CommentListItemData = {
+                id: number;
+                userName: string;
+                userUrl: string;
+                commentableName: string | null;
+                commentableUrl: string;
+                contentHtml: string;
+                url: string;
+                createdAt: string;
+            };
+            export type CommentListPageData = {
+                items: App.DTO.Admin.CommentListItemData[];
+                pagination: App.DTO.PaginationData;
+                filter: App.DTO.Admin.UserFilterData;
+                filterUrl: string;
+                menu: App.DTO.Navigation.NavItemData[];
+            };
             export type ExportData = {
                 type: string;
             };
@@ -56,6 +73,24 @@ declare namespace App {
             export type ExportTypeData = {
                 value: string;
                 label: string;
+            };
+            export type SolutionListItemData = {
+                id: number;
+                userName: string;
+                userUrl: string;
+                exercisePath: string;
+                exerciseTitle: string;
+                exerciseUrl: string;
+                content: string;
+                url: string;
+                createdAt: string;
+            };
+            export type SolutionListPageData = {
+                items: App.DTO.Admin.SolutionListItemData[];
+                pagination: App.DTO.PaginationData;
+                filter: App.DTO.Admin.UserFilterData;
+                filterUrl: string;
+                menu: App.DTO.Navigation.NavItemData[];
             };
             export type UpdateUserData = {
                 name: string;
