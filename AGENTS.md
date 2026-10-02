@@ -34,6 +34,7 @@ Hexlet SICP — трекер изучения книги SICP: пользова�
 Скиллы активировать сразу, как зашёл в область, а не когда застрял:
 
 - PHP, Eloquent, миграции, политики, кэш, очереди → `laravel-best-practices` (глубже — её `rules/*.md`).
+- Написание и ревью тестов → `testing-best-practices`.
 - `resources/js/**`, Inertia-страницы, формы, навигация → `inertia-react-development`.
 - Медленная страница, N+1, исключение в запросе → `debug-using-debugbar`.
 - OAuth GitHub/Yandex → `socialite-development`. Фильтры и сортировки в API → `laravel-query-builder`.
