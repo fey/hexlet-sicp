@@ -121,7 +121,7 @@ class UserControllerTest extends ControllerTestCase
         ]);
 
         $response->assertRedirect(route('admin.users.index'));
-        $response->assertSessionHas('success', 'User updated');
+        $response->assertSessionHas('success', __('layout.flash.success'));
 
         $this->assertDatabaseHas('users', [
             'id' => $user->id,
@@ -129,6 +129,61 @@ class UserControllerTest extends ControllerTestCase
             'github_name' => $newGithub,
             'is_admin' => true,
         ]);
+    }
+
+    public function testEdit(): void
+    {
+        $this->actingAs($this->adminUser);
+
+        $this->get(route('admin.users.edit', $this->regularUser))
+            ->assertOk()
+            ->assertSee('<meta name="robots" content="noindex, nofollow">', false)
+            ->assertInertia(fn(Assert $page) => $page
+                ->component('Admin/User/Edit')
+                ->where('name', $this->regularUser->name)
+                ->where('githubName', $this->regularUser->github_name)
+                ->where('isAdmin', false)
+                ->where('updateUrl', route('admin.users.update', $this->regularUser))
+                ->where('cancelUrl', route('admin.users.index'))
+                ->has('menu', 4)
+                // Раздел «Пользователи» подсвечен и на вложенной странице.
+                ->where('menu.0.active', true)
+                ->where('menu.3.active', false)
+                ->where('menu.3.href', route('admin.export.index')));
+    }
+
+    public function testUpdateShowsFlashOnUserList(): void
+    {
+        $this->actingAs($this->adminUser);
+
+        $this->followingRedirects()
+            ->put(route('admin.users.update', $this->regularUser), ['name' => 'New Name'])
+            ->assertInertia(fn(Assert $page) => $page
+                ->component('Admin/User/Index')
+                ->where('flash', ['message' => __('layout.flash.success'), 'level' => 'success'])
+                ->etc());
+    }
+
+    public function testUpdateRevokesAdmin(): void
+    {
+        $this->actingAs($this->adminUser);
+        $user = User::factory()->admin()->create();
+
+        $this->put(route('admin.users.update', $user), ['name' => $user->name, 'is_admin' => false]);
+
+        $this->assertFalse($user->fresh()->is_admin);
+    }
+
+    public function testUpdateRequiresName(): void
+    {
+        $this->withExceptionHandling();
+        $this->actingAs($this->adminUser);
+        $edit = route('admin.users.edit', $this->regularUser);
+
+        $this->from($edit)
+            ->put(route('admin.users.update', $this->regularUser), ['name' => ''])
+            ->assertRedirect($edit)
+            ->assertSessionHasErrors('name');
     }
 
     public function testUpdateAsRegularUserDenied(): void

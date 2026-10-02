@@ -26,6 +26,8 @@ class NavigationBuilder
         'admin.users.index',
         'solutions.show',
         'users.solutions.show',
+        'admin.users.edit',
+        'admin.export.index',
     ];
 
     public function __construct(private Request $request)
@@ -75,10 +77,10 @@ class NavigationBuilder
     public function admin(array $filter = []): array
     {
         return [
-            $this->route('admin.users.title', 'admin.users.index', 'users', $filter),
-            $this->route('admin.comments.title', 'admin.comments.index', 'messages', $filter),
-            $this->route('admin.solutions.title', 'admin.solutions.index', 'code', $filter),
-            $this->route('admin.export.title', 'admin.export.index', 'download', $filter),
+            $this->route('admin.users.title', 'admin.users.index', 'users', $filter, 'admin.users.*'),
+            $this->route('admin.comments.title', 'admin.comments.index', 'messages', $filter, 'admin.comments.*'),
+            $this->route('admin.solutions.title', 'admin.solutions.index', 'code', $filter, 'admin.solutions.*'),
+            $this->route('admin.export.title', 'admin.export.index', 'download', $filter, 'admin.export.*'),
         ];
     }
 
@@ -175,17 +177,19 @@ class NavigationBuilder
 
     /**
      * @param array<string, array<string, string|null>> $parameters
+     * @param string|null $activePattern шаблон routeIs(), если пункт подсвечивается и на вложенных страницах
      */
     private function route(
         string $labelKey,
         string $routeName,
         ?string $icon = null,
         array $parameters = [],
+        ?string $activePattern = null,
     ): NavItemData {
         return new NavItemData(
             label: __($labelKey),
             href: route($routeName, $parameters),
-            active: $this->request->routeIs($routeName),
+            active: $this->request->routeIs($activePattern ?? $routeName),
             inertia: in_array($routeName, self::INERTIA_ROUTES, true),
             icon: $icon,
         );

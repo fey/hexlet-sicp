@@ -1,4 +1,4 @@
-import { Head } from '@inertiajs/react'
+import { Head, Link } from '@inertiajs/react'
 import { ActionIcon, Anchor, Badge, Group, Text, Title } from '@mantine/core'
 import { IconPencil, IconShieldCheck } from '@tabler/icons-react'
 import { useTranslation } from 'react-i18next'
@@ -12,7 +12,7 @@ type User = App.DTO.Admin.UserListItemData
 export default function AdminUserIndex({ items, pagination, filter, filterUrl, menu }: App.DTO.Admin.UserListPageData) {
   const { t } = useTranslation()
 
-  // Профиль и редактирование пользователя ещё на Blade — обычные ссылки, не <Link>.
+  // Профиль пользователя ещё на Blade — обычная ссылка, не <Link>.
   const columns: Column<User>[] = [
     { label: t('admin.users.table.id'), render: (user) => user.id },
     {
@@ -50,7 +50,7 @@ export default function AdminUserIndex({ items, pagination, filter, filterUrl, m
       label: t('admin.users.table.actions'),
       render: (user) => (
         <ActionIcon
-          component="a"
+          component={Link}
           href={user.editUrl}
           variant="outline"
           aria-label={t('admin.users.edit')}
