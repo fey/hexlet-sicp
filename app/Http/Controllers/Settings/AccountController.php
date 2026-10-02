@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Settings;
 
+use App\DTO\Settings\AccountPageData;
 use App\Models\User;
+use App\Support\Navigation\NavigationBuilder;
 use Auth;
 use App\Http\Controllers\Controller;
 use DB;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\View\View;
+use Inertia\Inertia;
+use Inertia\Response;
+use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 
 class AccountController extends Controller
 {
@@ -16,15 +19,23 @@ class AccountController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(): View
+    public function index(NavigationBuilder $navigation): Response
     {
         /** @var User $user */
         $user = Auth::user();
 
-        return view('settings.account.index', compact('user'));
+        $page = new AccountPageData(
+            email: $user->email,
+            resetPasswordUrl: route('password.request'),
+            destroyUrl: route('settings.account.destroy', $user),
+            menu: $navigation->settings(),
+        );
+
+        return $this->inertia($page->toArray())
+            ->withViewData(['robots' => 'noindex, nofollow']);
     }
 
-    public function destroy(): RedirectResponse
+    public function destroy(): SymfonyResponse
     {
         DB::transaction(function () {
             /** @var User $user */
@@ -38,6 +49,7 @@ class AccountController extends Controller
             }
         });
 
-        return redirect()->route('home');
+        // home — Blade-страница: Inertia-запрос получает 409 и делает полную перезагрузку.
+        return Inertia::location(route('home'));
     }
 }

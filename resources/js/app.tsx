@@ -2,6 +2,7 @@ import '@mantine/core/styles.css'
 import '@mantine/notifications/styles.css'
 import { createInertiaApp, type ResolvedComponent } from '@inertiajs/react'
 import { MantineProvider } from '@mantine/core'
+import { ModalsProvider } from '@mantine/modals'
 import { Notifications } from '@mantine/notifications'
 import { createRoot } from 'react-dom/client'
 import { I18nextProvider } from 'react-i18next'
@@ -20,8 +21,10 @@ createInertiaApp({
     createRoot(el).render(
       <I18nextProvider i18n={createI18n(locale, translations)}>
         <MantineProvider theme={theme} forceColorScheme={colorScheme}>
-          <Notifications />
-          <App {...props} />
+          <ModalsProvider>
+            <Notifications />
+            <App {...props} />
+          </ModalsProvider>
         </MantineProvider>
       </I18nextProvider>,
     )

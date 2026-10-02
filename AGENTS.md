@@ -89,7 +89,7 @@ Hexlet SICP — трекер изучения книги SICP: пользова�
 
 ### Фронтенд (hybrid Blade + Inertia/React)
 
-Приложение переезжает на Inertia + Mantine постранично (**strangler**, ADR 0001), поэтому Blade и Inertia сосуществуют — и все правила ниже следуют из этого. Inertia-страницы пишутся на TSX + Mantine (`resources/js/app.tsx`, лейаут `layouts/AppLayout.tsx`); пропы типизируются выходными DTO из `app/DTO` через `generated.d.ts`. Пока переехала одна страница — `settings/profile`.
+Приложение переезжает на Inertia + Mantine постранично (**strangler**, ADR 0001), поэтому Blade и Inertia сосуществуют — и все правила ниже следуют из этого. Inertia-страницы пишутся на TSX + Mantine (`resources/js/app.tsx`, лейаут `layouts/AppLayout.tsx`); пропы типизируются выходными DTO из `app/DTO` через `generated.d.ts`. Переехали `settings/profile` и `settings/account`.
 
 Правила hybrid-периода:
 

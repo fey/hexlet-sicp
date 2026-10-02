@@ -80,6 +80,12 @@ declare namespace App {
             };
         }
         namespace Settings {
+            export type AccountPageData = {
+                email: string;
+                resetPasswordUrl: string;
+                destroyUrl: string;
+                menu: App.DTO.Navigation.NavItemData[];
+            };
             export type ProfilePageData = {
                 name: string;
                 email: string;

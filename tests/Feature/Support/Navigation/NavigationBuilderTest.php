@@ -55,12 +55,16 @@ class NavigationBuilderTest extends TestCase
 
     public function testOnlyMigratedRoutesAreInertiaLinks(): void
     {
-        $settings = $this->builder(null)->settings();
+        $builder = $this->builder(null);
+        $isInertia = fn(array $items) => collect($items)
+            ->mapWithKeys(fn(NavItemData $item) => [$item->href => $item->inertia])
+            ->all();
 
         $this->assertSame(
-            [route('settings.profile.index') => true, route('settings.account.index') => false],
-            collect($settings)->mapWithKeys(fn(NavItemData $item) => [$item->href => $item->inertia])->all(),
+            [route('settings.profile.index') => true, route('settings.account.index') => true],
+            $isInertia($builder->settings()),
         );
+        $this->assertFalse($isInertia($builder->build()->main)[route('chapters.index')]);
     }
 
     private function build(?User $user): NavigationData

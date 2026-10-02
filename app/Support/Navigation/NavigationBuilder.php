@@ -21,6 +21,7 @@ class NavigationBuilder
     /** Маршруты, уже переехавшие на Inertia: на них ведёт <Link>, на остальные — <a>. */
     private const array INERTIA_ROUTES = [
         'settings.profile.index',
+        'settings.account.index',
     ];
 
     public function __construct(private Request $request)
