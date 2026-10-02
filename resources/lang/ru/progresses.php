@@ -8,4 +8,6 @@ return [
     'see_details' => 'Подробнее',
     'solutions' => 'Решения',
     'exercises' => 'Упражнения',
+    'completed' => 'Завершено',
+    'in_progress' => 'В процессе',
 ];
