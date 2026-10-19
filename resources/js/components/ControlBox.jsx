@@ -24,7 +24,6 @@ const ControlBox = () => {
     setIsSending(true)
     const url = routes.runCheckPath(exerciseId)
     const data = {
-      user_id: userId,
       solution_code: editor.content,
     }
     try {
@@ -104,13 +103,25 @@ const ControlBox = () => {
   return (
     <div className="d-flex justify-content-between">
       {renderSaveButton()}
-      <Button
-        variant="primary"
-        onClick={runCheck}
-        disabled={isSending || isEditorEmpty(editor)}
-      >
-        {isSending ? <Spinner animation="border" role="status" variant="light" size="sm" /> : t('run')}
-      </Button>
+      {userId
+        ? (
+            <Button
+              variant="primary"
+              onClick={runCheck}
+              disabled={isSending || isEditorEmpty(editor)}
+            >
+              {isSending ? <Spinner animation="border" role="status" variant="light" size="sm" /> : t('run')}
+            </Button>
+          )
+        : (
+            <OverlayTrigger overlay={<Tooltip id="tooltip-run-disabled">{t('tooltip.loginRequired')}</Tooltip>}>
+              <span className="d-inline-block">
+                <Button variant="primary" style={{ pointerEvents: 'none' }} disabled>
+                  {t('run')}
+                </Button>
+              </span>
+            </OverlayTrigger>
+          )}
     </div>
   )
 }

@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 Route::namespace('Api')->name('api.')->group(function (): void {
     Route::resource('exercises', 'ExerciseController')->only(['show']);
-    Route::resource('exercises.check', 'Exercise\CheckController')->only(['store'])->middleware('throttle:10,1');
+    Route::resource('exercises.check', 'Exercise\CheckController')->only(['store'])
+        // web даёт сессию и CSRF: без них auth в группе api никого не узнаёт (#1936).
+        ->middleware(['web', 'auth', 'throttle:10,1']);
     Route::resource('exercises.solutions', 'Exercise\SolutionController')->only(['store']);
 });
