@@ -13,14 +13,16 @@ use Illuminate\Http\Response;
 
 class CheckController extends Controller
 {
+    /**
+     * Check user or guest solution code
+     */
     public function store(
         Request $request,
         Exercise $exercise,
         CheckSolutionData $data,
         ExerciseService $exerciseService
     ): Response {
-        /** @var User $user */
-        $user = $request->user();
+        $user = $request->user() ?? new User();
 
         $checkResult = $exerciseService->check($user, $exercise, $data->solution_code);
 

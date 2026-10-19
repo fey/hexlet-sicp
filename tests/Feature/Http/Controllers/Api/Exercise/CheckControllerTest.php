@@ -50,18 +50,27 @@ class CheckControllerTest extends ControllerTestCase
         ]);
     }
 
-    public function testCheckByGuestIsRejected(): void
+    public function testCheckByGuest(): void
     {
-        $this->withExceptionHandling();
         $exercise = Exercise::wherePath('1.3')->first();
         $path = route('api.exercises.check.store', [$exercise]);
 
-        $response = $this->postJson($path, ['solution_code' => '(define x 1)']);
+        $underscoredPath = $exercise->present()->underscorePath;
+        $solutionCode = view("exercise.solution_stub.{$underscoredPath}_solution")->render();
 
-        $response->assertUnauthorized();
+        $data = [
+            'user_id' => null,
+            'solution_code' => $solutionCode,
+        ];
+        $response = $this->postJson($path, $data);
+
+        $response->assertCreated();
+        $responseBody = $response->decodeResponseJson();
+
+        $this->assertTrue(data_get($responseBody, 'check_result.exit_code') === CheckResultData::SUCCESS_EXIT_CODE);
     }
 
-    public function testCheckIgnoresUserIdFromRequest(): void
+    public function testGuestCannotCheckOnBehalfOfUser(): void
     {
         $exercise = Exercise::wherePath('1.3')->first();
         $path = route('api.exercises.check.store', [$exercise]);
@@ -74,7 +83,7 @@ class CheckControllerTest extends ControllerTestCase
             'user_id' => $otherUser->id,
             'solution_code' => $solutionCode,
         ];
-        $response = $this->actingAs($this->user)->postJson($path, $data);
+        $response = $this->postJson($path, $data);
 
         $response->assertCreated();
         $this->assertDatabaseMissing('exercise_members', [
