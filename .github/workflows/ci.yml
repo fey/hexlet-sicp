@@ -23,6 +23,10 @@ env:
   # раннере. Без него watch создаёт launch и заливает в него ноль файлов,
   # причём прогон остаётся зелёным.
   ALLURE_RESULTS: build/allure-results
+  # Compose собирает через buildx bake, а тот с v0.38 требует --allow=fs.* для
+  # кэша в /tmp/.docker-cache вне контекста. У docker compose build такого флага
+  # нет, поэтому проверку выключаем.
+  BUILDX_BAKE_ENTITLEMENTS_FS: "0"
 
 jobs:
   build:
