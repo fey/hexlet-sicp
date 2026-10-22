@@ -36,8 +36,15 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['daily'],
+            'channels' => explode(',', env('LOG_STACK', 'daily')),
             'ignore_exceptions' => false,
+        ],
+
+        // Exceptions already reach Bugsink via Integration::captureUnhandledException in the Handler
+        'sentry' => [
+            'driver' => 'sentry',
+            'level' => 'error',
+            'report_exceptions' => false,
         ],
 
         'single' => [
