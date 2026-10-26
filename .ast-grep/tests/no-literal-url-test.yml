@@ -1,0 +1,14 @@
+id: no-literal-url
+valid:
+  - <Link href={updateUrl}>Edit</Link>
+  - <a href={item.url}>x</a>
+  - <a href="https://hexlet.io">x</a>
+  - "router.post(updateUrl, { path: '/not-a-url' })"
+  - router.delete(destroyUrl)
+invalid:
+  - <Link href="/settings/profile">x</Link>
+  - <Link href={'/settings/profile'}>x</Link>
+  - <a href={`/users/${id}`}>x</a>
+  - "<a href={isRu ? '/ru/pages' : url}>x</a>"
+  - router.post('/settings/account', data)
+  - router.visit(`/users/${id}`)

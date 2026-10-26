@@ -1,0 +1,30 @@
+id: no-literal-url
+language: tsx
+severity: error
+message: URL склеен в JS — передай его пропом с бэкенда
+note: Маршруты живут под локаль-префиксом /{locale}/...; путь, собранный в JS, теряет префикс и молча переключает локаль сессии.
+files:
+  - resources/js/**
+utils:
+  path-literal:
+    any:
+      - kind: string
+        regex: ^['"]/
+      - kind: template_string
+        regex: ^`/
+rule:
+  any:
+    - kind: jsx_attribute
+      all:
+        - has:
+            kind: property_identifier
+            regex: ^href$
+        - has:
+            stopBy: end
+            matches: path-literal
+    - pattern: router.$METHOD($$$)
+      has:
+        field: arguments
+        has:
+          nthChild: 1
+          matches: path-literal
