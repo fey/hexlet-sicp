@@ -1,0 +1,385 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/DTO/Activity/ActivityItemData.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Model\:\:getFullTitle\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/DTO/Activity/ActivityItemData.php
+
+		-
+			message: '#^Ternary operator condition is always true\.$#'
+			identifier: ternary.alwaysTrue
+			count: 1
+			path: app/DTO/Activity/ActivityItemData.php
+
+		-
+			message: '#^Using nullsafe property access on non\-nullable type Illuminate\\Database\\Eloquent\\Model\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/DTO/Activity/ActivityItemData.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/DTO/Admin/SolutionListItemData.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$path\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/DTO/Admin/SolutionListItemData.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Model\:\:getTitle\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/DTO/Admin/SolutionListItemData.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$chapter\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/DTO/My/SolutionListItemData.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Model\:\:getFullTitle\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/DTO/My/SolutionListItemData.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/DTO/Solution/SolutionListItemData.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Model\:\:getFullTitle\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/DTO/Solution/SolutionListItemData.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Model\:\:present\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/DTO/Solution/SolutionListItemData.php
+
+		-
+			message: '#^Parameter \#1 \$callback of method Illuminate\\Database\\Eloquent\\Collection\<int,Illuminate\\Database\\Eloquent\\Model\>\:\:map\(\) expects callable\(Illuminate\\Database\\Eloquent\\Model, int\)\: App\\DTO\\Solution\\SolutionVersionData, Closure\(App\\Models\\Solution\)\: App\\DTO\\Solution\\SolutionVersionData given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/DTO/Solution/SolutionShowPageData.php
+
+		-
+			message: '#^Parameter \#2 \$direction of method Illuminate\\Database\\Eloquent\\Builder\<App\\Models\\Activity\>\:\:orderBy\(\) expects ''asc''\|''desc''\|SortDirection, ''DESC'' given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/ActivityController.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Support\\Carbon\:\:submonth\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Http/Controllers/HomeController.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Support\\Carbon\:\:subweek\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Http/Controllers/HomeController.php
+
+		-
+			message: '#^Left side of && is always true\.$#'
+			identifier: booleanAnd.leftAlwaysTrue
+			count: 1
+			path: app/Http/Controllers/HomeController.php
+
+		-
+			message: '#^Parameter \#1 \$callback of method Illuminate\\Support\\Collection\<int,App\\Models\\Comment\>\:\:filter\(\) expects \(callable\(App\\Models\\Comment, int\)\: bool\)\|null, Closure\(App\\Models\\Comment\)\: App\\Models\\User given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/HomeController.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Relations\\HasMany\:\:versioned\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Http/Controllers/My/SolutionController.php
+
+		-
+			message: '#^Call to method getProfileImageLink\(\) on an unknown class Hemp\\Presenter\.$#'
+			identifier: class.notFound
+			count: 1
+			path: app/Http/Controllers/Settings/ProfileController.php
+
+		-
+			message: '#^Parameter \#1 \$exercise of static method App\\DTO\\Solution\\SolutionShowPageData\:\:fromExercise\(\) expects App\\Models\\Exercise, Illuminate\\Database\\Eloquent\\Model\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/SolutionController.php
+
+		-
+			message: '#^Parameter \#2 \$user of static method App\\DTO\\Solution\\SolutionShowPageData\:\:fromExercise\(\) expects App\\Models\\User, Illuminate\\Database\\Eloquent\\Model\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/SolutionController.php
+
+		-
+			message: '#^Parameter \#1 \$exercise of static method App\\DTO\\Solution\\SolutionShowPageData\:\:fromExercise\(\) expects App\\Models\\Exercise, Illuminate\\Database\\Eloquent\\Model\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/User/SolutionController.php
+
+		-
+			message: '#^Property App\\Models\\User\:\:\$email \(string\) does not accept null\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: app/Models/User.php
+
+		-
+			message: '#^Property App\\Models\\User\:\:\$github_name \(string\) does not accept null\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: app/Models/User.php
+
+		-
+			message: '#^Property App\\Models\\User\:\:\$name \(string\) does not accept null\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: app/Models/User.php
+
+		-
+			message: '#^Property App\\Models\\User\:\:\$password \(string\) does not accept null\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: app/Models/User.php
+
+		-
+			message: '#^Parameter \#1 \$exercise of static method App\\Helpers\\ExerciseHelper\:\:getExerciseTitle\(\) expects App\\Models\\Exercise, Illuminate\\Database\\Eloquent\\Model given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Presenters/ExercisePresenter.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Services/ActivityService.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$path\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Services/ActivityService.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Services/ChapterProgressService.php
+
+		-
+			message: '#^Parameter \#1 \$chapter of method App\\Services\\ChapterProgressService\:\:buildChapterProgress\(\) expects App\\Models\\Chapter, Illuminate\\Database\\Eloquent\\Model given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Services/ChapterProgressService.php
+
+		-
+			message: '#^Parameter \$exercise of class App\\DTO\\Progress\\ExerciseProgressData constructor expects App\\Models\\Exercise, Illuminate\\Database\\Eloquent\\Model given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Services/ChapterProgressService.php
+
+		-
+			message: '#^Parameter \#2 \$direction of method Illuminate\\Database\\Eloquent\\Builder\<App\\Models\\User\>\:\:orderBy\(\) expects ''asc''\|''desc''\|SortDirection, ''DESC'' given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Services/CommentsRatingCalculator.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Model\:\:exercise\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Services/ExerciseService.php
+
+		-
+			message: '#^Parameter \#1 \$array \(list\<App\\DTO\\Navigation\\LocaleLinkData\>\) of array_values is already a list, call has no effect\.$#'
+			identifier: arrayValues.list
+			count: 1
+			path: app/Support/Navigation/NavigationBuilder.php
+
+		-
+			message: '#^Parameter \#1 \$user of method App\\Services\\ActivityService\:\:logCompletedExercise\(\) expects App\\Models\\User, Illuminate\\Database\\Eloquent\\Model\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: database/factories/ExerciseMemberFactory.php
+
+		-
+			message: '#^Parameter \#2 \$exercise of method App\\Services\\ActivityService\:\:logCompletedExercise\(\) expects App\\Models\\Exercise, Illuminate\\Database\\Eloquent\\Model\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: database/factories/ExerciseMemberFactory.php
+
+		-
+			message: '#^Parameter \#1 \$user of method App\\Services\\ActivityService\:\:logAddedSolution\(\) expects App\\Models\\User, Illuminate\\Database\\Eloquent\\Model\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: database/factories/SolutionFactory.php
+
+		-
+			message: '#^Parameter \#1 \$chapter of closure expects App\\Models\\Chapter, Illuminate\\Database\\Eloquent\\Model given\.$#'
+			identifier: argument.type
+			count: 1
+			path: routes/breadcrumbs.php
+
+		-
+			message: '#^Unreachable statement \- code above always terminates\.$#'
+			identifier: deadCode.unreachable
+			count: 1
+			path: tests/Exercises/TeacherSolutionsTest.php
+
+		-
+			message: '#^Access to an undefined property Spatie\\Activitylog\\Contracts\\Activity\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: tests/Feature/Http/Controllers/ActivityControllerTest.php
+
+		-
+			message: '#^PHPDoc tag @var with type App\\Models\\Chapter\|App\\Models\\Exercise is not subtype of native type string\.$#'
+			identifier: varTag.nativeType
+			count: 4
+			path: tests/Feature/Http/Controllers/CommentControllerTest.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: tests/Feature/Http/Controllers/My/SolutionControllerTest.php
+
+		-
+			message: '#^Parameter \#1 \$callback of method Illuminate\\Support\\Collection\<int,Illuminate\\Database\\Eloquent\\Model\>\:\:each\(\) expects callable\(Illuminate\\Database\\Eloquent\\Model, int\)\: mixed, Closure\(App\\Models\\Exercise\)\: App\\Models\\Solution given\.$#'
+			identifier: argument.type
+			count: 1
+			path: tests/Feature/Http/Controllers/My/SolutionControllerTest.php
+
+		-
+			message: '#^Property Tests\\Feature\\Http\\Controllers\\My\\SolutionControllerTest\:\:\$exercise \(App\\Models\\Exercise\) does not accept Illuminate\\Database\\Eloquent\\Model\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: tests/Feature/Http/Controllers/My/SolutionControllerTest.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 5
+			path: tests/Feature/Http/Controllers/MyControllerTest.php
+
+		-
+			message: '#^Property Tests\\Feature\\Http\\Controllers\\MyControllerTest\:\:\$exercise \(App\\Models\\Exercise\) does not accept Illuminate\\Database\\Eloquent\\Model\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: tests/Feature/Http/Controllers/MyControllerTest.php
+
+		-
+			message: '#^Property Tests\\Feature\\Http\\Controllers\\MyControllerTest\:\:\$leaf \(App\\Models\\Chapter\) does not accept Illuminate\\Database\\Eloquent\\Model\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: tests/Feature/Http/Controllers/MyControllerTest.php
+
+		-
+			message: '#^Property Tests\\Feature\\Http\\Controllers\\MyControllerTest\:\:\$root \(App\\Models\\Chapter\) does not accept Illuminate\\Database\\Eloquent\\Model\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: tests/Feature/Http/Controllers/MyControllerTest.php
+
+		-
+			message: '#^Property Tests\\Feature\\Http\\Controllers\\MyControllerTest\:\:\$section \(App\\Models\\Chapter\) does not accept Illuminate\\Database\\Eloquent\\Model\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: tests/Feature/Http/Controllers/MyControllerTest.php
+
+		-
+			message: '#^Parameter \#1 \$models of method Illuminate\\Database\\Eloquent\\Relations\\BelongsToMany\<Illuminate\\Database\\Eloquent\\Model,Illuminate\\Database\\Eloquent\\Model,Illuminate\\Database\\Eloquent\\Relations\\Pivot,string\>\:\:saveMany\(\) expects array\<Illuminate\\Database\\Eloquent\\Model\>\|Illuminate\\Support\\Collection\<\(int\|string\), Illuminate\\Database\\Eloquent\\Model\>, Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Chapter\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: tests/Feature/Http/Controllers/Rating/TopControllerTest.php
+
+		-
+			message: '#^Parameter \#1 \$models of method Illuminate\\Database\\Eloquent\\Relations\\BelongsToMany\<Illuminate\\Database\\Eloquent\\Model,Illuminate\\Database\\Eloquent\\Model,Illuminate\\Database\\Eloquent\\Relations\\Pivot,string\>\:\:saveMany\(\) expects array\<Illuminate\\Database\\Eloquent\\Model\>\|Illuminate\\Support\\Collection\<\(int\|string\), Illuminate\\Database\\Eloquent\\Model\>, Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Exercise\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: tests/Feature/Http/Controllers/Rating/TopControllerTest.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$chapter_id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: tests/Feature/Http/Controllers/SitemapControllerTest.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Model\:\:getFullTitle\(\)\.$#'
+			identifier: method.notFound
+			count: 3
+			path: tests/Feature/Http/Controllers/SolutionControllerTest.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Model\:\:solutions\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: tests/Feature/Http/Controllers/SolutionControllerTest.php
+
+		-
+			message: '#^Call to method getProfileImageLink\(\) on an unknown class Hemp\\Presenter\.$#'
+			identifier: class.notFound
+			count: 1
+			path: tests/Feature/Http/Controllers/SolutionControllerTest.php
+
+		-
+			message: '#^Property Tests\\Feature\\Http\\Controllers\\SolutionControllerTest\:\:\$exercise is never read, only written\.$#'
+			identifier: property.onlyWritten
+			count: 1
+			path: tests/Feature/Http/Controllers/SolutionControllerTest.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$exercise\.$#'
+			identifier: property.notFound
+			count: 1
+			path: tests/Feature/Http/Controllers/User/SolutionControllerTest.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 2
+			path: tests/Feature/Services/ChapterProgressServiceTest.php
+
+		-
+			message: '#^Parameter \#1 \$exercise of method Database\\Factories\\ExerciseMemberFactory\:\:exercise\(\) expects App\\Models\\Exercise, Illuminate\\Database\\Eloquent\\Model given\.$#'
+			identifier: argument.type
+			count: 1
+			path: tests/Feature/Services/ChapterProgressServiceTest.php
+
+		-
+			message: '#^Property Tests\\Feature\\Services\\ChapterProgressServiceTest\:\:\$firstChild \(App\\Models\\Chapter\) does not accept Illuminate\\Database\\Eloquent\\Model\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: tests/Feature/Services/ChapterProgressServiceTest.php
+
+		-
+			message: '#^Property Tests\\Feature\\Services\\ChapterProgressServiceTest\:\:\$root \(App\\Models\\Chapter\) does not accept Illuminate\\Database\\Eloquent\\Model\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: tests/Feature/Services/ChapterProgressServiceTest.php
+
+		-
+			message: '#^Property Tests\\Feature\\Services\\ChapterProgressServiceTest\:\:\$secondChild \(App\\Models\\Chapter\) does not accept Illuminate\\Database\\Eloquent\\Model\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: tests/Feature/Services/ChapterProgressServiceTest.php

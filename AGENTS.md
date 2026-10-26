@@ -45,9 +45,9 @@ Hexlet SICP — трекер изучения книги SICP: пользова�
 Всё запускается через Makefile; `make-compose.mk` — то же самое под Docker, с префиксом `compose-`. Список целей смотри в самих файлах — здесь только то, чего в них не видно:
 
 - `make cache-clear` — лечит `CSRF token mismatch`.
-- `make lint` = `lint-js lint-ts types-check lint-php`. `types-check` перегенерирует `resources/js/types/generated.d.ts` из `app/DTO` и `app/Enums` и падает на диффе: поменял DTO — запусти `make generate-types` и закоммить файл. Форматирование blade не проверяется нигде: `lint-fix` его только переписывает.
+- `make lint` = `lint-js lint-ts lint-frontend-rules types-check lint-php lint-blade`. `types-check` перегенерирует `resources/js/types/generated.d.ts` из `app/DTO` и `app/Enums` и падает на диффе: поменял DTO — запусти `make generate-types` и закоммить файл. `lint-blade` — `prettier --check` по Blade; Racket-шаблоны (`solution_stub/`, `solution_sandbox_wrapper`) исключены в `.prettierignore`: плагин сплющивает отступы в Scheme-коде. Многострочный строковый литерал внутри `{{ }}` плагин переформатирует при каждом прогоне и не сходится — пиши строку в одну линию.
 - `make lint-fix` чинит PHP (phpcbf) и blade (prettier), но не JS. Автофикс Biome — отдельная цель `make lint-js-fix`.
-- `make analyse` — заглушка (`@echo 'fixme'`, вызов phpstan закомментирован). Поэтому pre-push-хук и CI фактически гоняют только lint и тесты.
+- `make analyse` — larastan (level 5), гоняется в CI и pre-push. Старые ошибки заморожены в `phpstan-baseline.neon`, новые валят сборку. Починил ошибку из baseline — `make analyse-baseline` и закоммить файл: иначе phpstan упадёт на устаревшей записи.
 - Testsuite четыре — `Unit`, `Feature`, `Exercises`, `Sandbox`; по умолчанию запускается `Feature`.
 - Racket (`raco`) нужен для `Exercises` и для `CheckControllerTest` в `Feature`. Локально его может не быть — тогда падают именно они, и это не регрессия: свои изменения проверять по остальным тестам.
 - `make start` (без Docker) поднимает приложение через **Heroku CLI** — `heroku local -f Procfile.dev`, а не `artisan serve`. Без установленного `heroku` работает только `make start-app` / `make start-frontend` или compose-цели.
