@@ -79,6 +79,7 @@
             "description": "JS linters and formatters",
             "matchManagers": ["npm"],
             "matchPackageNames": [
+                "@ast-grep/cli",
                 "@biomejs/biome",
                 "prettier",
                 "@shufo/prettier-plugin-blade",
@@ -148,6 +149,7 @@
                 "@vitejs/*",
                 "laravel-vite-plugin",
                 "sass",
+                "@ast-grep/cli",
                 "@biomejs/biome",
                 "prettier",
                 "@shufo/prettier-plugin-blade",

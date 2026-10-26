@@ -1,0 +1,12 @@
+id: no-ujs-attributes
+language: tsx
+severity: error
+message: data-method/data-confirm не работают на Inertia-странице — router.* и modals.openConfirmModal()
+note: '@rails/ujs грузится только в Blade-слое; на Inertia-странице такая ссылка тихо уходит GET-ом.'
+files:
+  - resources/js/**
+rule:
+  kind: jsx_attribute
+  has:
+    kind: property_identifier
+    regex: ^data-(method|confirm)$

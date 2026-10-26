@@ -91,15 +91,11 @@ ide-helper:
 lint-js:
 	pnpm run lint-js
 
-# Правила hybrid-периода (docs/agents/frontend.md), только для нового TS-кода:
-# URL приходят с бэкенда; data-method без @rails/ujs уходит GET-ом; window/document на верхнем уровне ломают SSR.
+# Правила hybrid-периода (docs/agents/frontend.md), только для нового TS-кода: sgconfig.yml и .ast-grep/.
+# `test` проверяет сами правила на примерах, `scan` — код.
 lint-frontend-rules:
-	@! grep -rnE --include='*.ts' --include='*.tsx' "href=(\"/|\{['\"\`]/)" resources/js \
-		|| (echo 'URL склеен в JS — передай его пропом с бэкенда'; exit 1)
-	@! grep -rnE --include='*.tsx' 'data-(method|confirm)=' resources/js \
-		|| (echo 'data-method/data-confirm не работают на Inertia-странице — router.* и modals.openConfirmModal()'; exit 1)
-	@! grep -rnE --include='*.ts' --include='*.tsx' '^[^ /*].*\b(window|document|localStorage)\.' resources/js \
-		|| (echo 'window/document на верхнем уровне модуля — перенеси в useEffect или обработчик'; exit 1)
+	pnpm exec ast-grep test --skip-snapshot-tests
+	pnpm exec ast-grep scan
 
 lint-ts:
 	pnpm run types

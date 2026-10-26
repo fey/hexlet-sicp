@@ -1,0 +1,7 @@
+id: no-ujs-attributes
+valid:
+  - <Button onClick={() => router.delete(destroyUrl)}>x</Button>
+  - <a data-bs-toggle="modal">x</a>
+invalid:
+  - <a href={url} data-method="delete">x</a>
+  - <a href={url} data-confirm="Sure?">x</a>

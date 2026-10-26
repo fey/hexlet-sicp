@@ -1,0 +1,14 @@
+id: no-browser-global-at-module-level
+valid:
+  - useEffect(() => { window.scrollTo(0, 0) }, [])
+  - function onClick() { localStorage.setItem('k', 'v') }
+  - const isBrowser = typeof window !== 'undefined'
+  - 'let w: typeof window'
+  - 'const x = { window: 1, document }'
+invalid:
+  - const width = window.innerWidth
+  - |
+    const theme = createTheme({
+      primary: localStorage.getItem('color'),
+    })
+  - document.addEventListener('click', handler)

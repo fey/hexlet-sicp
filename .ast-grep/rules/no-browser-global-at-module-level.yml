@@ -1,0 +1,24 @@
+id: no-browser-global-at-module-level
+language: tsx
+severity: error
+message: window/document на верхнем уровне модуля — перенеси в useEffect или обработчик
+note: Фаза 2 включает SSR (ADR 0004), а на сервере этих объектов нет.
+files:
+  - resources/js/**
+rule:
+  kind: identifier
+  regex: ^(window|document|localStorage|sessionStorage)$
+  not:
+    any:
+      - inside:
+          stopBy: end
+          any:
+            - kind: function_declaration
+            - kind: function_expression
+            - kind: arrow_function
+            - kind: method_definition
+      # Проверка `typeof window !== 'undefined'` — как раз защита для SSR.
+      - inside:
+          pattern: typeof $X
+      - inside:
+          kind: type_query

@@ -1,0 +1,9 @@
+# Правила hybrid-периода (docs/agents/frontend.md) для ast-grep: make lint-frontend-rules.
+ruleDirs:
+  - .ast-grep/rules
+testConfigs:
+  - testDir: .ast-grep/tests
+# .ts разбираем тем же парсером, что и .tsx, — иначе каждое правило пришлось бы писать дважды.
+# Ломается только на приведениях вида `<T>x`; в проекте пишем `x as T`.
+languageGlobs:
+  tsx: ['*.ts']

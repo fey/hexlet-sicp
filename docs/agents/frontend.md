@@ -47,6 +47,6 @@ Bootstrap и Mantine живут каждый в своём корне: reboot-с
 
 ## Проверки
 
-- `make lint` включает `tsc`, `types-check` и `lint-frontend-rules` (grep-правила из раздела выше). Biome форматирует только `.ts`/`.tsx` (`pnpm exec biome format --write ./resources/js`); легаси `.jsx` форматтеру не следует и вне его. `make lint-js-fix` (`biome check --write`) вдобавок сортирует импорты и применяет фиксы линтера во всём `resources/js`, легаси включительно.
+- `make lint` включает `tsc`, `types-check` и `lint-frontend-rules` — правила из раздела выше на ast-grep (`.ast-grep/rules/`, конфиг `sgconfig.yml`). Новое правило — YAML-файл там же плюс примеры `valid`/`invalid` в `.ast-grep/tests/`; `make lint-frontend-rules` прогоняет сначала примеры, потом код. Проверяются только `.ts`/`.tsx`, легаси `.jsx` вне правил. Biome форматирует только `.ts`/`.tsx` (`pnpm exec biome format --write ./resources/js`); легаси `.jsx` форматтеру не следует и вне его. `make lint-js-fix` (`biome check --write`) вдобавок сортирует импорты и применяет фиксы линтера во всём `resources/js`, легаси включительно.
 - Fast Refresh даёт `@viteReactRefresh` перед `@vite` — он стоит в Inertia-корне и в `exercise/show` (редактор). Blade-шаблон, который начинает грузить React-код, добавляет его так же, иначе dev падает на отсутствии преамбулы.
 - Смоук curl-ом: Inertia-GET без заголовка `X-Inertia-Version` получает 409 и съедает flash — пропы удобнее читать из начального HTML обычного GET.
