@@ -7,6 +7,7 @@
    * @var bool $userCompletedExercise
    * @var \App\Models\User $authUser
    */
+
 @endphp
 @section('title')
   {{ getTitleContent(__('exercise.exercise', ['exercise' => $exercise->getFullTitle()])) }}
@@ -63,31 +64,31 @@
             {!! MarkdownHelper::text(getExerciseDescription($exercise)) !!}
             <hr>
             <div>
-            @auth
+              @auth
                 <div class="d-flex justify-content-start gap-2 mb-4">
-                    @if ($exercise->solutions()->exists())
-                        <a class="btn btn-secondary"
-                            href="{{ route('solutions.index', ['filter' => ['exercise_id' => $exercise->id]]) }}" role="button">
-                            {{ __('views.exercise.show.buttons.show_solutions') }}
-                        </a>
-                    @endif
+                  @if ($exercise->solutions()->exists())
+                    <a class="btn btn-secondary"
+                      href="{{ route('solutions.index', ['filter' => ['exercise_id' => $exercise->id]]) }}" role="button">
+                      {{ __('views.exercise.show.buttons.show_solutions') }}
+                    </a>
+                  @endif
 
-                    @if (!$isShowSavedSolutionsButton)
-                        <a href="{{ route('solutions.index', ['filter' => ['exercise_id' => $exercise->id, 'user_id' => $authUser->id]]) }}"
-                            class="btn btn-primary">{{ __('solution.show_solution') }}</a>
-                    @endif
+                  @if (!$isShowSavedSolutionsButton)
+                    <a href="{{ route('solutions.index', ['filter' => ['exercise_id' => $exercise->id, 'user_id' => $authUser->id]]) }}"
+                      class="btn btn-primary">{{ __('solution.show_solution') }}</a>
+                  @endif
 
-                    @if ($exercise->users->isEmpty())
-                        <p class="mb-0">{{ __('exercise.show.nobody_completed') }}</p>
-                    @else
-                        @include('exercise._modal.completed_by')
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#modal-completed-by">
-                            {{ __('exercise.show.who_completed') }}
-                        </button>
-                    @endif
+                  @if ($exercise->users->isEmpty())
+                    <p class="mb-0">{{ __('exercise.show.nobody_completed') }}</p>
+                  @else
+                    @include('exercise._modal.completed_by')
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                      data-bs-target="#modal-completed-by">
+                      {{ __('exercise.show.who_completed') }}
+                    </button>
+                  @endif
                 </div>
-            @endauth
+              @endauth
             </div>
           </div>
           <div class="tab-pane fade" id="exercise-discussion" role="tabpanel" aria-labelledby="exercise-discussion-tab">

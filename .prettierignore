@@ -1,2 +1,3 @@
 resources/views/exercise/listing/*
 resources/views/exercise/solution_stub/*
+resources/views/exercise/solution_sandbox_wrapper.blade.php
