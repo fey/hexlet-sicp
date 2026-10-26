@@ -32,7 +32,7 @@ start-frontend:
 db-prepare:
 	php artisan migrate:fresh --force --seed
 
-lint: lint-js lint-ts lint-frontend-rules types-check lint-php
+lint: lint-js lint-ts lint-frontend-rules types-check lint-php lint-blade
 
 lint-fix:
 	composer exec phpcbf -v
@@ -50,9 +50,12 @@ test-sandbox:
 test-coverage:
 	XDEBUG_MODE=coverage php artisan test --coverage-clover build/logs/clover.xml
 
+# Старые ошибки заморожены в phpstan-baseline.neon; починил — `make analyse-baseline`.
 analyse:
-	# composer exec phpstan analyse -v -- --memory-limit=512M
-	@echo 'fixme'
+	composer exec phpstan -- analyse --memory-limit=512M --no-progress
+
+analyse-baseline:
+	composer exec phpstan -- analyse --memory-limit=512M --no-progress --generate-baseline
 
 check: test lint analyse
 
@@ -108,6 +111,9 @@ types-check: generate-types
 
 lint-php:
 	composer exec phpcs -v
+
+lint-blade:
+	pnpm exec prettier --check 'resources/**/*.blade.php'
 
 lint-js-fix:
 	pnpm run lint-js-fix

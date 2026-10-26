@@ -14,7 +14,10 @@
   @endif
   <ul class="list-unstyled">
     @foreach ($model->comments as $comment)
-      @include('components.comment._comment', ['comment' => $comment, 'maxCommentLength' => $maxCommentLength])
+      @include('components.comment._comment', [
+          'comment' => $comment,
+          'maxCommentLength' => $maxCommentLength,
+      ])
     @endforeach
   </ul>
   @auth

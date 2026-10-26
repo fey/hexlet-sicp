@@ -39,8 +39,7 @@
               </ul>
             </li>
           @else
-            <li class="nav-item"><a href="{{ $item->href }}"
-                @class(['nav-link', 'link-info' => $item->highlight, 'p-2'])>{{ $item->label }}</a></li>
+            <li class="nav-item"><a href="{{ $item->href }}" @class(['nav-link', 'link-info' => $item->highlight, 'p-2'])>{{ $item->label }}</a></li>
           @endif
         @endforeach
       </ul>

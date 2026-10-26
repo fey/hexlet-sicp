@@ -15,9 +15,7 @@
         @if ($square === null)
           <li class="empty"></li>
         @else
-          <li data-level="{{ $square->getLevel()->value }}"
-              title="{{ $square->getTitle() }}"
-          ></li>
+          <li data-level="{{ $square->getLevel()->value }}" title="{{ $square->getTitle() }}"></li>
         @endif
       @endforeach
     </ul>

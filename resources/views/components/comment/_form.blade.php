@@ -20,13 +20,10 @@
       </div>
     @endif
 
-    <label for="content" class="w-100 text-wrap">{{ __('comment.enter_your_message', ['max' => $maxCommentLength]) }}</label>
+    <label for="content"
+      class="w-100 text-wrap">{{ __('comment.enter_your_message', ['max' => $maxCommentLength]) }}</label>
     <div>
-      {{ html()
-        ->textarea('content')
-        ->class('form-control x-min-h-100px')
-        ->attribute('maxlength', $maxCommentLength)
-        ->required() }}
+      {{ html()->textarea('content')->class('form-control x-min-h-100px')->attribute('maxlength', $maxCommentLength)->required() }}
     </div>
     <div class="mt-3">
       {{ html()->submit(__('comment.submit'))->class('btn btn-success btn-sm text-uppercase') }}
